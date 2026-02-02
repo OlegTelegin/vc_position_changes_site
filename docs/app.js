@@ -43,12 +43,14 @@ const chartContainer = d3.select("#chart");
 const tooltip = d3.select("#tooltip");
 const filterList = d3.select("#filter-list");
 
-const margin = { top: 24, right: 18, bottom: 36, left: 52 };
+const margin = { top: 24, right: 18, bottom: 56, left: 74 };
 
 const svg = chartContainer.append("svg");
 const plot = svg.append("g").attr("class", "plot");
 const axisX = plot.append("g").attr("class", "axis axis-x");
 const axisY = plot.append("g").attr("class", "axis axis-y");
+const axisXLabel = plot.append("text").attr("class", "axis-label axis-label-x");
+const axisYLabel = plot.append("text").attr("class", "axis-label axis-label-y");
 const zeroLine = plot.append("line").attr("class", "zero-line");
 const seriesGroup = plot.append("g").attr("class", "series");
 
@@ -108,7 +110,7 @@ function buildFilters(classes) {
 
 function getDimensions() {
   const { width } = chartContainer.node().getBoundingClientRect();
-  const height = Math.max(380, Math.min(520, width * 0.5));
+  const height = Math.max(440, Math.min(640, width * 0.6));
   return { width, height };
 }
 
@@ -119,6 +121,8 @@ function updateChart() {
     seriesGroup.selectAll("*").remove();
     axisX.selectAll("*").remove();
     axisY.selectAll("*").remove();
+    axisXLabel.text("");
+    axisYLabel.text("");
     zeroLine.attr("stroke", "none");
     renderEmpty("Select a classification to render the chart.");
     return;
@@ -166,6 +170,19 @@ function updateChart() {
       .tickSizeOuter(0)
   );
   axisY.call(d3.axisLeft(y).ticks(5));
+
+  axisXLabel
+    .attr("x", innerWidth / 2)
+    .attr("y", innerHeight + margin.bottom - 12)
+    .attr("text-anchor", "middle")
+    .text("Year, Relative to the 1st VC Deal");
+
+  axisYLabel
+    .attr("transform", `rotate(-90)`)
+    .attr("x", -innerHeight / 2)
+    .attr("y", -margin.left + 16)
+    .attr("text-anchor", "middle")
+    .text("Change in Share of Employment");
 
   zeroLine
     .attr("x1", 0)
