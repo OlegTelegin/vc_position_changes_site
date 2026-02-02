@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DID Results | VC Position Changes</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div>
+          <p class="eyebrow">VC Position Changes</p>
+          <h1>Event-Study DID Results</h1>
+          <p class="subtitle">
+            Hover a line to preview confidence intervals. Click a line to pin the
+            classification label.
+          </p>
+        </div>
+        <div class="legend-note">CI bands are 95% intervals.</div>
+      </header>
+      <main class="content">
+        <section class="chart-panel">
+          <div id="chart"></div>
+          <div id="tooltip" class="tooltip" role="status" aria-live="polite"></div>
+        </section>
+        <aside class="filters">
+          <h2>Position Classifications</h2>
+          <p>Select which classifications to render.</p>
+          <div id="filter-list" class="filter-list"></div>
+        </aside>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
