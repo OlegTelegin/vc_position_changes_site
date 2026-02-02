@@ -1,4 +1,5 @@
 const DATA_URL = "data/vc_did_weightshare_results.json";
+const LABELS_URL = "data/1000_positions_num.csv";
 
 const termOrder = [
   "F2_treat",
@@ -9,8 +10,6 @@ const termOrder = [
   "L3_treat",
   "L4_treat",
   "L5_treat",
-  "L6_treat",
-  "L7_treat",
 ];
 
 const termLabelMap = new Map([
@@ -22,8 +21,6 @@ const termLabelMap = new Map([
   ["L3_treat", 3],
   ["L4_treat", 4],
   ["L5_treat", 5],
-  ["L6_treat", 6],
-  ["L7_treat", 7],
 ]);
 
 const colorPalette = [
@@ -56,6 +53,7 @@ const seriesGroup = plot.append("g").attr("class", "series");
 
 let dataByClass = new Map();
 let selectedClasses = new Set();
+let classLabelMap = new Map();
 
 function renderEmpty(message) {
   chartContainer.selectAll(".empty-state").remove();
@@ -84,6 +82,28 @@ function normalizeData(raw) {
   );
 }
 
+function normalizeLabels(raw) {
+  if (!Array.isArray(raw)) {
+    return new Map();
+  }
+  return new Map(
+    raw
+      .filter(
+        (row) =>
+          row.role_k1000_v3_num !== undefined &&
+          row.role_k1000_v3 !== undefined
+      )
+      .map((row) => [
+        String(row.role_k1000_v3_num).trim(),
+        String(row.role_k1000_v3).trim(),
+      ])
+  );
+}
+
+function getClassLabel(value) {
+  return classLabelMap.get(String(value)) ?? `Class ${value}`;
+}
+
 function buildFilters(classes) {
   filterList.selectAll("*").remove();
   classes.forEach((value, index) => {
@@ -101,7 +121,7 @@ function buildFilters(classes) {
         }
         updateChart();
       });
-    item.append("span").text(`Class ${value}`);
+    item.append("span").text(getClassLabel(value));
     if (index === 0) {
       item.append("span").attr("class", "sr-only");
     }
@@ -231,7 +251,7 @@ function updateChart() {
         const left = event.clientX - rect.left;
         const top = event.clientY - rect.top;
         tooltip
-          .text(`Class ${key}`)
+          .text(getClassLabel(key))
           .style("left", `${left}px`)
           .style("top", `${top}px`)
           .classed("visible", true);
@@ -252,12 +272,13 @@ function init(raw) {
   window.addEventListener("resize", () => updateChart());
 }
 
-d3.json(DATA_URL)
-  .then((raw) => {
+Promise.all([d3.json(DATA_URL), d3.csv(LABELS_URL).catch(() => null)])
+  .then(([raw, labelsRaw]) => {
     if (!raw || raw.length === 0) {
       renderEmpty("No data available.");
       return;
     }
+    classLabelMap = normalizeLabels(labelsRaw);
     init(raw);
   })
   .catch((error) => {

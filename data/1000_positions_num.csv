@@ -1,0 +1,1005 @@
+role_k1000_v3,role_k1000_v3_num
+Aerospace Engineer,1
+Aerospace Systems Technician,2
+Aviation Safety Inspector,3
+Avionics Technician,4
+Drone Operator,5
+Meteorologist,6
+Military Pilot,7
+Nuclear Operations Technician,8
+Radiation Safety,9
+Safety and Security Officer,10
+Simulation Engineer,11
+BIM Modeler,12
+Building Systems Designer,13
+Construction Estimator,14
+Construction Inspector,15
+Construction Supervisor,16
+Cost Analyst,17
+Design Engineer,18
+Energy Project Manager,19
+Healthcare Project Coordinator,20
+Lighting Designer,21
+Piping Engineer,22
+Project Engineer,23
+Quantity Surveyor,24
+Structural Engineer,25
+Technical Project Manager,26
+Transportation Engineer,27
+Wind Technician,28
+Audio Visual Technician,29
+Automation Systems Engineer,30
+Building Systems Engineer,31
+Commissioning Engineer,32
+Corrosion Engineer,33
+Data Center Facilities,34
+Data Center Technician,35
+Electrical Maintenance Technician,36
+Electrical Trainer,37
+Electronics Engineer,38
+Energy Engineer,39
+Energy Systems Engineer,40
+Engineer,41
+Engineering Innovator,42
+Engineering Intern,43
+Engineering Program Manager,44
+Field Service Engineer,45
+Fire Protection Engineer,46
+Fire and Security Installer,47
+HVAC Coordinator,48
+Human Factors Engineer,49
+Instrumentation Technician,50
+Manufacturing Engineer,51
+Materials Engineer,52
+Mechanical Engineer,53
+Medical Device Engineer,54
+Nuclear Engineer,55
+Operations Engineering,56
+Optical Engineer,57
+Reliability Engineer,58
+Safety Engineer,59
+Solar Technician,60
+Telecom Technician,61
+Validation Engineer,62
+Archaeologist,63
+Asbestos Technician,64
+Drilling Technician,65
+Environmental Analyst,66
+Environmental Scientist,67
+Geologist,68
+Geospatial Technician,69
+Geotechnical Engineer,70
+Land Planner,71
+Land Surveyor,72
+Transportation Technician,73
+Urban Planner,74
+Water Management Engineer,75
+Water Resources Engineer,76
+Certification Analyst,77
+Document Manager,78
+Ergonomics Consultant,79
+Fire Safety Inspector,80
+Food Safety Inspector,81
+Non-Destructive Testing Technician,82
+Pharmaceutical Quality Assurance,83
+Product Safety Analyst,84
+Quality Assurance,85
+Quality Assurance Analyst,86
+Quality Inspector,87
+Safety Coordinator,88
+Electric Vehicle Consultant,89
+Energy Specialist,90
+Meter Data Analyst,91
+Offshore Operations Coordinator,92
+Oil and Gas Analyst,93
+Renewable Energy Consultant,94
+Renewable Energy Specialist,95
+Sustainability Analyst,96
+Transmission Operator,97
+Utility Operations,98
+Agricultural Scientist,99
+Application Scientist,100
+Biologist,101
+Biomedical Engineer,102
+Chemical Engineer,103
+Food Technologist,104
+Forensic Scientist,105
+Lab Technician,106
+Patent Chemist,107
+Regulatory Analyst,108
+Research Scientist,109
+Science Project Manager,110
+Scientific Researcher,111
+Account Analyst,112
+Accountant,113
+Accounting Assistant,114
+Accounting Consultant,115
+Billing Coordinator,116
+Bookkeeper,117
+Collections Agent,118
+Data Clerk,119
+Document Processor,120
+Estate and Trust Advisor,121
+Finance Clerk,122
+Finance Executive,123
+Finance Manager,124
+Finance Officer,125
+Finance Support Assistant,126
+Financial Auditor,127
+Financial Systems Analyst,128
+Fund Accountant,129
+Global Mobility,130
+Global Mobility Tax,131
+HR Finance Analyst,132
+Healthcare Finance Analyst,133
+Hospitality Finance Analyst,134
+Insurance Finance Analyst,135
+Outsourcing Manager,136
+Outsourcing Operations,137
+Payroll Administrator,138
+Property Accountant,139
+Reconciliation Analyst,140
+Tax Consultant,141
+Transfer Pricing Analyst,142
+Banking Advisor,143
+Banking Analyst,144
+Banking Product Manager,145
+Client Support Advisor,146
+Credit Analyst,147
+Credit Risk Analyst,148
+Digital Finance Trader,149
+Due Diligence Analyst,150
+ESG Finance Analyst,151
+Energy Trader,152
+Financial Advisor,153
+Financial Product Analyst,154
+Financial Recruiter,155
+Financial Valuation Analyst,156
+Investment Advisor,157
+Investment Trader,158
+Investor Relations,159
+Loan Officer,160
+M&A Analyst,161
+Notary Agent,162
+Payment Operations,163
+Trader,164
+Treasury Analyst,165
+Trust Officer,166
+Benefits Coordinator,167
+Claims Adjuster,168
+Claims Processor,169
+Compensation and Benefits,170
+Insurance Broker,171
+Insurance Manager,172
+Insurance Specialist,173
+Insurance Underwriter,174
+Pension Administrator,175
+Auditor,176
+Complaint Resolution,177
+Compliance Officer,178
+ESG Auditor,179
+Ethics Compliance Officer,180
+Financial Examiner,181
+Fraud Investigator,182
+Market Surveillance Analyst,183
+Regulatory Affairs,184
+Risk Analyst,185
+Trade Compliance,186
+Attorney,187
+Compliance Counsel,188
+Corporate Counsel,189
+Document Examiner,190
+Employment Lawyer,191
+Intellectual Property Attorney,192
+Licensing Officer,193
+Paralegal,194
+Privacy Counsel,195
+Real Estate Lawyer,196
+Acquisition Integration Analyst,197
+Actuary,198
+Business Performance Analyst,199
+Compensation Analyst,200
+Contract Analyst,201
+Economist,202
+Energy Analyst,203
+Financial Analyst,204
+Financial Business Analyst,205
+Pricing Analyst,206
+Quantitative Risk Analyst,207
+Revenue Specialist,208
+Sales Compensation Analyst,209
+Sustainability Consultant,210
+Asset Manager,211
+Chief Executive Officer,212
+Corporate Executive,213
+Housing Compliance Analyst,214
+Land Acquisition Agent,215
+Property Appraiser,216
+Property Manager,217
+Property Valuer,218
+Real Estate Consultant,219
+Real Estate Coordinator,220
+Real Estate Finance,221
+Title Examiner,222
+Biomedical Researcher,223
+Clinical Data Scientist,224
+Clinical Research Coordinator,225
+Health Researcher,226
+Medical Science Liaison,227
+Medical Writer,228
+Regulatory Affairs Analyst,229
+Alternative Medicine Therapist,230
+Appeals Analyst,231
+Care Coordinator,232
+Care Manager,233
+Clinical Dietitian,234
+Clinical Pharmacist,235
+Community Health Worker,236
+Credential Evaluator,237
+Dental Assistant,238
+Dental Hygienist,239
+Dental Practitioner,240
+Dialysis Nurse,241
+Emergency Medical Nurse,242
+Eye Care Assistant,243
+Health Informatics,244
+Health Information Manager,245
+Health and Wellness Coordinator,246
+Healthcare Assistant,247
+Healthcare Educator,248
+Healthcare HR Specialist,249
+Healthcare Investigator,250
+Healthcare Liaison,251
+Healthcare Nurse,252
+Healthcare Operations,253
+Healthcare Project Lead,254
+Healthcare Quality Auditor,255
+Healthcare Receptionist,256
+Healthcare Support,257
+Healthcare Technician,258
+Infection Control Coordinator,259
+Infection Control Nurse,260
+Laboratory Technician,261
+Massage Therapist,262
+Medical Billing,263
+Medical Coder,264
+Medical Practitioner,265
+Medical Sales Specialist,266
+Medical Scribe,267
+Medical Transporter,268
+Mental Health Counselor,269
+Nurse Educator,270
+Nutrition Manager,271
+Nutritionist,272
+Occupational Health Advisor,273
+Ophthalmic Technician,274
+Ophthalmologist and Otologist,275
+Patient Access,276
+Patient Care Aide,277
+Pharmacist,278
+Pharmacy Assistant,279
+Pharmacy Informatics,280
+Pharmacy Operations,281
+Pharmacy Safety,282
+Pharmacy Technician,283
+Phlebotomy Technician,284
+Physical Therapist,285
+Provider Relations,286
+Radiology Technologist,287
+Registered Nurse,288
+Rehabilitation Aide,289
+Rehabilitation Therapist,290
+Respiratory Therapist,291
+Sleep Technician,292
+Social Worker,293
+Specialized Healthcare Recruiter,294
+Speech Therapist,295
+Sports Medicine Therapist,296
+Sterile Processing Technician,297
+Surgical Technician,298
+Therapist,299
+Ultrasound Technician,300
+Utilization Review,301
+Veterans Support Coordinator,302
+Veterinarian,303
+Veterinary Receptionist,304
+Veterinary Technician,305
+Wellness Coach,306
+On Leave,307
+Retired,308
+Customer Service Operations,309
+Operations Associate,310
+Order Coordinator,311
+Parts and Aftersales,312
+Print Operations,313
+Quotation Analyst,314
+Warranty Analyst,315
+Diversity and Inclusion Coordinator,316
+Employee Relations,317
+HR Business Partner,318
+HR Coordinator,319
+HR Intern,320
+Healthcare Recruitment Manager,321
+Labor Mediator,322
+Legal Recruiter,323
+Military Recruiter,324
+Recruitment Coordinator,325
+Talent Acquisition Specialist,326
+Talent Development,327
+Aviation Operations,328
+Fleet Coordinator,329
+Fuel Operations Coordinator,330
+Logistics Dispatcher,331
+Logistics Officer,332
+Maritime Operations,333
+Recycling Engineer,334
+Scheduler,335
+Transportation Operations,336
+Transportation Planner,337
+Biofuels Operations,338
+Food Manufacturing Technician,339
+Labeling Coordinator,340
+Manufacturing Operations,341
+Process Improvement Specialist,342
+Product Launch Manager,343
+Supplier Quality Assurance,344
+Contact Center Operations,345
+Department Manager,346
+Energy and Mining Operations,347
+Facilities Administrator,348
+Facilities Operations,349
+Field Operations,350
+Global Operations Manager,351
+HR Operations,352
+Industrial Infrastructure Manager,353
+Maintenance Coordinator,354
+Operations Intern,355
+Operations Leadership,356
+Operations Management,357
+Operations Manager,358
+Operations Specialist,359
+Relocation Consultant,360
+Scheduling Coordinator,361
+Service Operations,362
+Site Operations,363
+Workforce Planner,364
+Contract Administrator,365
+Document Controller,366
+Industry Coordinator,367
+Industry Planner,368
+Industry Project Manager,369
+Operations Support,370
+Project Controller,371
+Project Coordination,372
+Subcontract Coordinator,373
+Tender Coordinator,374
+Apparel Production,375
+Clinical Supply Chain,376
+Commodity Trader,377
+Customs Analyst,378
+Customs Compliance,379
+Distribution Coordinator,380
+E-commerce Fulfillment,381
+Freight Coordinator,382
+Import Export Coordinator,383
+Inventory Coordinator,384
+Logistics Coordinator,385
+Logistics Technician,386
+Maintenance Planner,387
+Manufacturing Finance Analyst,388
+Medical Logistics,389
+Merchandise Planner,390
+Parts Coordinator,391
+Planning Analyst,392
+Planning Specialist,393
+Procure to Pay Analyst,394
+Procurement Analyst,395
+Production Coordinator,396
+Production Planner,397
+Purchasing Agent,398
+Quality Control Analyst,399
+Retail Project Manager,400
+Space Planner,401
+Supplier Diversity,402
+Supply Chain Analyst,403
+Supply Chain Coordinator,404
+Supply Chain Intern,405
+Supply Chain Network Planner,406
+Supply Chain Operations,407
+Supply Chain Project,408
+Sustainable Supply Chain,409
+Trade Logistics,410
+Vendor Relations,411
+Warehouse Operations,412
+Business Services Coordinator,413
+Change Communication,414
+Change Management,415
+HR Systems Analyst,416
+Knowledge Manager,417
+Learning Systems Administrator,418
+Onboarding Coordinator,419
+Performance Consultant,420
+Process Specialist,421
+Transformation Consultant,422
+Workforce Analyst,423
+Business Continuity Analyst,424
+Cybersecurity Analyst,425
+Cybersecurity Specialist,426
+Data Privacy,427
+Digital Forensics Analyst,428
+Disaster Recovery Analyst,429
+IT Security Auditor,430
+IT Security Specialist,431
+Incident Responder,432
+Intelligence Analyst,433
+Network Security Analyst,434
+Security Analyst,435
+Security Clearance Analyst,436
+Security Monitor,437
+Security Program Manager,438
+Threat Analyst,439
+Trust and Safety Analyst,440
+Vulnerability Analyst,441
+BIM Coordinator,442
+Business Intelligence Analyst,443
+Clinical Data Specialist,444
+Data Analyst,445
+Data Manager,446
+Data Steward,447
+Digital Marketing Analyst,448
+E-Discovery Analyst,449
+GIS Analyst,450
+HR Data Analyst,451
+Healthcare Data Analyst,452
+Administrative Support,453
+Capacity Planner,454
+Customer Support Expert,455
+Data Center Operations,456
+Database Administrator,457
+IT Administrator,458
+IT Asset Manager,459
+IT Operations Management,460
+IT Support,461
+IT Support Technician,462
+IT Systems Administrator,463
+Incident Response,464
+Mainframe Engineer,465
+Mobility Technician,466
+Network Manager,467
+Network Performance Analyst,468
+Network Specialist,469
+Operations Support Specialist,470
+Technical Operations,471
+Technical Support,472
+Technical Support Operations,473
+Technical Trainer,474
+Telecom Support Technician,475
+Agile Coach,476
+Automation Specialist,477
+CRM Consultant,478
+Cloud Advisor,479
+Delivery Manager,480
+Digital Archivist,481
+Digital Project Management,482
+Digital Strategy Consultant,483
+Digital Workplace Consultant,484
+Enterprise Architect,485
+Finance Project Manager,486
+Healthcare Consultant,487
+Healthcare Project Management,488
+IT Consultant,489
+Implementation Analyst,490
+Legal Project Manager,491
+Localization Coordinator,492
+Messaging Marketing,493
+Mobility Consultant,494
+Product Owner,495
+Product Support Technician,496
+Program Manager,497
+Project Management,498
+Project Manager,499
+Release Engineer,500
+Risk Compliance Analyst,501
+Security Project Manager,502
+ServiceNow Consultant,503
+Technology Integrator,504
+Telecom Consultant,505
+Business Analyst,506
+Configuration Analyst,507
+Customer Experience Analyst,508
+Document Analyst,509
+Dynamics 365 Consultant,510
+E-commerce Analyst,511
+EDI Analyst,512
+ERP Consultant,513
+HCM Systems Analyst,514
+Healthcare Systems Analyst,515
+Insurance Analyst,516
+LIMS Analyst,517
+Operations Analyst,518
+Program Analyst,519
+QA Analyst,520
+Records Administrator,521
+SAP Consultant,522
+SAP Data Analyst,523
+SAP Developer,524
+SAP Instructor,525
+SAP Test Engineer,526
+Salesforce Administrator,527
+ServiceNow Developer,528
+Systems Analyst,529
+Training and Curriculum Analyst,530
+Administrative Assistant,531
+Bilingual Administrative Coordinator,532
+Court Clerk,533
+Education Administrator,534
+Election Support,535
+Executive Assistant,536
+HR Administrative Assistant,537
+Program Coordinator,538
+Records Clerk,539
+Research Coordinator,540
+Climate Analyst,541
+Community Coordinator,542
+Community Organizer,543
+Community Program Coordinator,544
+Development Director,545
+Development Officer,546
+Environmental Coordinator,547
+Finance Volunteer,548
+Food Program Coordinator,549
+Grant Administrator,550
+International Policy Advisor,551
+Nonprofit Volunteer,552
+Policy Evaluator,553
+Public Policy Advocate,554
+Public Relations Officer,555
+Stakeholder Engagement,556
+Immigration Consultant,557
+Civil Rights Investigator,558
+Correctional Officer,559
+Emergency Dispatcher,560
+Emergency Management,561
+Law Enforcement Officer,562
+Legal Counsel,563
+Military Operations Officer,564
+Public Safety Officer,565
+Records Examiner,566
+Security Instructor,567
+Wildlife Conservation Officer,568
+Academic Researcher,569
+Creative Arts Educator,570
+Data Science Educator,571
+Language Instructor,572
+Language Translator,573
+Legal Analyst,574
+Library Assistant,575
+Media Writer,576
+Multimedia Designer,577
+Museum Curator,578
+Research Analyst,579
+Research Intern,580
+Social Science Educator,581
+Survey Researcher,582
+University Faculty,583
+Writer,584
+Admissions Officer,585
+Art Instructor,586
+Arts Educator,587
+Behavior Analyst,588
+Campus Engagement Coordinator,589
+Campus Student Support,590
+Career Coach,591
+Childcare Provider,592
+Classroom Teacher,593
+Community Volunteer,594
+Culinary Instructor,595
+Early Childhood Educator,596
+Education Coordinator,597
+Educator,598
+Employment Advisor,599
+Enrollment Officer,600
+Family Support Counselor,601
+Financial Aid Advisor,602
+Fitness Coach,603
+Housing Support Coordinator,604
+Internship Coordinator,605
+Language Teacher,606
+Library Educator,607
+Performing Artist,608
+Recreation Program Coordinator,609
+Religious Leader,610
+Religious Teacher,611
+School Bus Coordinator,612
+Science Educator,613
+Social Services Advocate,614
+Social Services Evaluator,615
+Social Support Worker,616
+Special Education Teacher,617
+Spiritual Care Chaplain,618
+Sports Coach,619
+Sports Operations,620
+Student Welfare Advisor,621
+Youth Educator,622
+Apprenticeship Facilitator,623
+Aviation Instructor,624
+Corporate Trainer,625
+Cybersecurity Instructor,626
+Language Coach,627
+Learning Designer,628
+Learning Developer,629
+Safety Trainer,630
+Trainer,631
+Training Auditor,632
+Acquisition Strategist,633
+Business Development,634
+Business Intern,635
+Client Solutions,636
+Energy Strategist,637
+Engagement Coordinator,638
+Entrepreneur,639
+Innovation Consultant,640
+International Strategy,641
+Licensing Strategist,642
+Network Strategist,643
+Partnerships Coordinator,644
+Pricing Strategist,645
+Proposal Analyst,646
+Revenue Operations Leader,647
+Strategy Consultant,648
+Sustainability Advisor,649
+Telecom Planner,650
+Brand Ambassador,651
+Brand Marketing,652
+Brand Strategist,653
+E-commerce Operations,654
+Fashion Buyer,655
+Fashion Designer,656
+Franchise Operations Specialist,657
+Retail Sales,658
+Communications Coordinator,659
+Content Creator,660
+Content Marketing,661
+Creative Project Manager,662
+Digital Marketing,663
+Event Management,664
+Fundraising Coordinator,665
+Healthcare Marketer,666
+Marketing Assistant,667
+Marketing Coordinator,668
+News Journalist,669
+Proposal Writer,670
+SEO Content Writer,671
+Search Marketing,672
+Social Media Marketing,673
+Sports Marketing,674
+Video Producer,675
+Visual Designer,676
+Customer Enablement,677
+Customer Experience,678
+Digital Marketing Strategist,679
+E-commerce Coordinator,680
+Education Product Developer,681
+Financial Product Manager,682
+Growth Marketing,683
+Healthcare Product Manager,684
+Marketing Insights Analyst,685
+Product Manager,686
+Revenue Growth Strategist,687
+Sales Analyst,688
+Finance Recruiter,689
+Life Sciences Recruiter,690
+Recruitment Consultant,691
+Talent Acquisition Director,692
+Talent Marketing,693
+Technical Recruiter,694
+Agricultural Sales,695
+Bid Coordinator,696
+Bid Manager,697
+Client Account Manager,698
+Customer Relations,699
+Customer Service Trainer,700
+Customer Success,701
+Cybersecurity Sales Representative,702
+Dental Sales,703
+Digital Sales,704
+Financial Sales,705
+Food and Beverage Sales,706
+Healthcare Marketing,707
+Healthcare Sales,708
+Healthcare Sales Specialist,709
+Hospitality Sales,710
+Insurance Sales,711
+Life Sciences Sales,712
+Logistics Sales,713
+Market Access Analyst,714
+Medical Product Manager,715
+Medical Sale,716
+Multilingual Sales Agent,717
+Pharmaceutical Leader,718
+Pharmaceutical Sale,719
+Public Sector Sales,720
+Real Estate Agent,721
+Regional Sales,722
+Remote Sales Representative,723
+Renewal Specialist,724
+Roofing Sales Representative,725
+Sales Account Executive,726
+Sales Consultant,727
+Sales Enablement,728
+Sales Intern,729
+Sales Operations,730
+Sales Project Coordinator,731
+Sales Representative,732
+Sales Support,733
+Sales Trainee,734
+Sales Trainer,735
+Sales and Marketing,736
+Solar Energy Sales,737
+Tech Sales,738
+Technical Sales,739
+Travel Consultant,740
+Value Consultant,741
+Vehicle Sales,742
+Automotive Advisor,743
+Automotive Customer Support,744
+Call Center Operations,745
+Customer Data Analyst,746
+Customer Service,747
+Customer Service Representative,748
+Customer Service Supervisor,749
+Customer Support Agent,750
+Customer Support Representative,751
+Membership Coordinator,752
+Rental Agent,753
+Animal Caregiver,754
+Animal Nutritionist,755
+Cashier,756
+Casino Ticketing,757
+Catering Coordinator,758
+Chef,759
+Cleaner,760
+Custodial Staff,761
+Deli and Bakery Staff,762
+Delivery Driver,763
+Event Operations,764
+Event Photographer,765
+Event Specialist,766
+Facility Caretaker,767
+Fitness Trainer,768
+Flight Attendant,769
+Food Server,770
+Food Service,771
+Food Service Management,772
+Food Service Volunteer,773
+Gaming Attendant,774
+Gardener,775
+Guest Services,776
+Hospitality Intern,777
+Hospitality Services,778
+Hotel Operations,779
+Housekeeping Attendant,780
+Housekeeping Supervisor,781
+Lifeguard,782
+Passenger Transport Driver,783
+Pastry Chef,784
+Performer,785
+Recreation Activities Coordinator,786
+Restaurant Crew,787
+Service Attendant,788
+Spa Technician,789
+Travel Coordinator,790
+Visitor Services,791
+Cash Clerk,792
+Delivery Courier,793
+Facilities Coordinator,794
+Leasing Agent,795
+Mail Processor,796
+Mortician,797
+Office Assistant,798
+Parking Attendant,799
+Telecommunications Operator,800
+Vehicle Clerk,801
+Automotive Sales,802
+Beauty Consultant,803
+Beauty Retail Manager,804
+Beverage Sales Consultant,805
+Dispensary Sales,806
+Fashion Stylist,807
+Food Retail Associate,808
+Home Design Consultant,809
+Optical Technician,810
+Pest Control Sales,811
+Pet Sales Associate,812
+Retail Cashier,813
+Retail Merchandiser,814
+Retail Operations,815
+Retail Sales Associate,816
+Retail Stock Associate,817
+Visual Merchandiser,818
+Asset Protection Manager,819
+Event Security,820
+Loss Prevention Specialist,821
+Maritime Security Officer,822
+Parking Officer,823
+Security Operations,824
+Security Personnel,825
+Security Surveillance,826
+Airport Operations Supervisor,827
+Animal Care Manager,828
+Automotive Service Operations,829
+Branch Operations,830
+Casino Operations,831
+Crew Coordinator,832
+Delivery Logistics,833
+Farm Operations,834
+Operations Director,835
+Residential Property Management,836
+Service Supervisor,837
+Shift Supervisor,838
+Team Lead,839
+3D Designer,840
+Accessibility Consultant,841
+Audio Visual Engineer,842
+Digital Game Artist,843
+Game Designer,844
+Game Developer,845
+Localization Specialist,846
+Technical Writer,847
+UX Designer,848
+UX Researcher,849
+Virtual Reality Developer,850
+Visual Artist,851
+Visual Effects Artist,852
+Web Designer,853
+.NET Developer,854
+AI Engineer,855
+AI Project Manager,856
+AI Researcher,857
+Aerospace Software Engineer,858
+Application Developer,859
+Bioinformatics Analyst,860
+Blockchain Consultant,861
+Blockchain Developer,862
+Broadcast Engineer,863
+Cloud Architect,864
+Cloud Engineer,865
+Cloud Security Engineer,866
+Computer Vision Engineer,867
+Cybersecurity Architect,868
+Cybersecurity Engineer,869
+Data Architect,870
+Data Developer,871
+Data Engineer,872
+Data Engineering Leader,873
+Data Product Manager,874
+Data Scientist,875
+Data Testing Engineer,876
+Data Visualization Developer,877
+Database Developer,878
+Developer Advocate,879
+Digital Forensic Analyst,880
+Embedded Software Engineer,881
+Fintech Developer,882
+GIS Engineer,883
+Game Software Engineer,884
+Geospatial Analyst,885
+Geospatial Developer,886
+Hardware Engineer,887
+Healthcare Architect,888
+Healthcare Engineer,889
+Identity Access Engineer,890
+Infrastructure Engineer,891
+Innovation Developer,892
+IoT Developer,893
+Java Developer,894
+Java Oracle Developer,895
+Mainframe Developer,896
+Middleware Engineer,897
+Mobile Developer,898
+Network Engineer,899
+Network Security Engineer,900
+PHP Developer,901
+Penetration Tester,902
+Performance Engineer,903
+QA Engineer,904
+Quantitative Analyst,905
+RPA Developer,906
+Red Team Operator,907
+Robotics Engineer,908
+Ruby on Rails Developer,909
+Salesforce Developer,910
+Security Product Manager,911
+Software Architect,912
+Software Automation Engineer,913
+Software Developer,914
+Solutions Architect,915
+Statistical Analyst,916
+Systems Engineer,917
+Tech Founder,918
+Tech Trainer,919
+Technical Product Manager,920
+Technical Program,921
+Technology Systems Engineer,922
+Test Engineer,923
+Wireless Communications Engineer,924
+Agricultural Technician,925
+Aircraft Maintenance,926
+Aircraft Technician,927
+Assembler,928
+Automotive Inspector,929
+Automotive Technician,930
+Cleaning Technician,931
+Combat Operator,932
+Commercial Truck Driver,933
+Construction Foreman,934
+Construction Worker,935
+Creative Producer,936
+Custodian,937
+Damage Control Technician,938
+Document Technician,939
+Driving Instructor,940
+Entertainment Technician,941
+Environmental Technician,942
+Equipment Operator,943
+Farm Laborer,944
+Field Service Technician,945
+Firefighter,946
+Fleet Supervisor,947
+Food Assembler,948
+Food Production,949
+Food Production Supervisor,950
+Grain Technician,951
+Grounds Maintenance,952
+HVAC Technician,953
+HVAC Trainer,954
+Industrial Operator,955
+Industrial Worker,956
+Inspection Technician,957
+Landscape Gardener,958
+Locksmith Technician,959
+Logistics Handler,960
+Logistics Operator,961
+Lumber Operations,962
+Machinist,963
+Maintenance Operations,964
+Maintenance Technician,965
+Manufacturing Operator,966
+Manufacturing Process Trainer,967
+Manufacturing Worker,968
+Marine Technician,969
+Media Technician,970
+Metal Fabricator,971
+Molding Machine Operator,972
+Molding Technician,973
+Package Handler,974
+Painter,975
+Parts Handler,976
+Pest and Lawn Technician,977
+Plumbing Technician,978
+Print Technician,979
+Production Operator,980
+Production Supervisor,981
+Production Technician,982
+Quality Tester,983
+Recycling Operator,984
+Restoration Technician,985
+Sanitation Cleaner,986
+Sanitation Manager,987
+Sanitation Worker,988
+Scaffolder,989
+Technical Instructor,990
+Traffic Operations,991
+Transport Driver,992
+Transport Operator,993
+Truck Driver,994
+Utility Construction Technician,995
+Utility Technician,996
+Vehicle Detailer,997
+Vehicle Technician,998
+Warehouse Associate,999
+Warehouse Worker,1000
+Waste Collection Driver,1001
+Waste Management,1002
+Waste Management Coordinator,1003
+unknown,1004
