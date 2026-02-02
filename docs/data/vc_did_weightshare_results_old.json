@@ -1,0 +1,478 @@
+[
+  {
+    "position_k1000_classification": 1.0,
+    "term": "0b.treat",
+    "coef": 0.0,
+    "ci_lower": 0.0,
+    "ci_upper": 0.0
+  },
+  {
+    "position_k1000_classification": 1.0,
+    "term": "1.treat",
+    "coef": 0.03194308280944824,
+    "ci_lower": 0.01968352310359478,
+    "ci_upper": 0.044202644377946854
+  },
+  {
+    "position_k1000_classification": 1.0,
+    "term": "F2_treat",
+    "coef": -0.0028396223206073046,
+    "ci_lower": -0.007676443085074425,
+    "ci_upper": 0.0019971984438598156
+  },
+  {
+    "position_k1000_classification": 1.0,
+    "term": "o.F1_treat",
+    "coef": 0.0,
+    "ci_lower": 0.0,
+    "ci_upper": 0.0
+  },
+  {
+    "position_k1000_classification": 1.0,
+    "term": "L0_treat",
+    "coef": 0.0015295095508918166,
+    "ci_lower": -0.0031155759934335947,
+    "ci_upper": 0.006174595095217228
+  },
+  {
+    "position_k1000_classification": 1.0,
+    "term": "L1_treat",
+    "coef": 0.002083396539092064,
+    "ci_lower": -0.005745143163949251,
+    "ci_upper": 0.009911936707794666
+  },
+  {
+    "position_k1000_classification": 1.0,
+    "term": "L2_treat",
+    "coef": 0.0010728882625699043,
+    "ci_lower": -0.007173867430537939,
+    "ci_upper": 0.00931964349001646
+  },
+  {
+    "position_k1000_classification": 1.0,
+    "term": "L3_treat",
+    "coef": -0.00014185930194798857,
+    "ci_lower": -0.009491647593677044,
+    "ci_upper": 0.00920792855322361
+  },
+  {
+    "position_k1000_classification": 1.0,
+    "term": "L4_treat",
+    "coef": -0.006019860506057739,
+    "ci_lower": -0.01562691107392311,
+    "ci_upper": 0.003587189596146345
+  },
+  {
+    "position_k1000_classification": 1.0,
+    "term": "L5_treat",
+    "coef": -0.008381112478673458,
+    "ci_lower": -0.018584398552775383,
+    "ci_upper": 0.0018221742939203978
+  },
+  {
+    "position_k1000_classification": 1.0,
+    "term": "L6_treat",
+    "coef": -0.008944185450673103,
+    "ci_lower": -0.019418315961956978,
+    "ci_upper": 0.0015299457591027021
+  },
+  {
+    "position_k1000_classification": 1.0,
+    "term": "L7_treat",
+    "coef": -0.008197768591344357,
+    "ci_lower": -0.019121894612908363,
+    "ci_upper": 0.0027263578958809376
+  },
+  {
+    "position_k1000_classification": 1.0,
+    "term": "_cons",
+    "coef": 0.02230486273765564,
+    "ci_lower": 0.021089548245072365,
+    "ci_upper": 0.023520177230238914
+  },
+  {
+    "position_k1000_classification": 3.0,
+    "term": "0b.treat",
+    "coef": 0.0,
+    "ci_lower": 0.0,
+    "ci_upper": 0.0
+  },
+  {
+    "position_k1000_classification": 3.0,
+    "term": "1.treat",
+    "coef": -0.0031638762447983027,
+    "ci_lower": -0.009576164186000824,
+    "ci_upper": 0.0032484116964042187
+  },
+  {
+    "position_k1000_classification": 3.0,
+    "term": "F2_treat",
+    "coef": -0.0006786744925193489,
+    "ci_lower": -0.003171846503391862,
+    "ci_upper": 0.0018144975183531642
+  },
+  {
+    "position_k1000_classification": 3.0,
+    "term": "o.F1_treat",
+    "coef": 0.0,
+    "ci_lower": 0.0,
+    "ci_upper": 0.0
+  },
+  {
+    "position_k1000_classification": 3.0,
+    "term": "L0_treat",
+    "coef": 8.983488805824891e-05,
+    "ci_lower": -0.0018141977488994598,
+    "ci_upper": 0.0019938675686717033
+  },
+  {
+    "position_k1000_classification": 3.0,
+    "term": "L1_treat",
+    "coef": -0.0017445527482777834,
+    "ci_lower": -0.005365363787859678,
+    "ci_upper": 0.0018762584077194333
+  },
+  {
+    "position_k1000_classification": 3.0,
+    "term": "L2_treat",
+    "coef": 0.017420044168829918,
+    "ci_lower": -0.021608224138617516,
+    "ci_upper": 0.0564483106136322
+  },
+  {
+    "position_k1000_classification": 3.0,
+    "term": "L3_treat",
+    "coef": 0.008912256918847561,
+    "ci_lower": -0.012562869116663933,
+    "ci_upper": 0.030387382954359055
+  },
+  {
+    "position_k1000_classification": 3.0,
+    "term": "L4_treat",
+    "coef": 0.008489921689033508,
+    "ci_lower": -0.012467852793633938,
+    "ci_upper": 0.02944769710302353
+  },
+  {
+    "position_k1000_classification": 3.0,
+    "term": "L5_treat",
+    "coef": -0.004778764210641384,
+    "ci_lower": -0.010720171965658665,
+    "ci_upper": 0.0011626436607912183
+  },
+  {
+    "position_k1000_classification": 3.0,
+    "term": "_cons",
+    "coef": 0.014169229194521904,
+    "ci_lower": 0.011170567013323307,
+    "ci_upper": 0.017167890444397926
+  },
+  {
+    "position_k1000_classification": 633.0,
+    "term": "0b.treat",
+    "coef": 0.0,
+    "ci_lower": 0.0,
+    "ci_upper": 0.0
+  },
+  {
+    "position_k1000_classification": 633.0,
+    "term": "1.treat",
+    "coef": 0.027226239442825317,
+    "ci_lower": 0.023426974192261696,
+    "ci_upper": 0.03102550469338894
+  },
+  {
+    "position_k1000_classification": 633.0,
+    "term": "F2_treat",
+    "coef": -0.002459126990288496,
+    "ci_lower": -0.005163429770618677,
+    "ci_upper": 0.0002451757318340242
+  },
+  {
+    "position_k1000_classification": 633.0,
+    "term": "o.F1_treat",
+    "coef": 0.0,
+    "ci_lower": 0.0,
+    "ci_upper": 0.0
+  },
+  {
+    "position_k1000_classification": 633.0,
+    "term": "L0_treat",
+    "coef": -0.00275128660723567,
+    "ci_lower": -0.004710897337645292,
+    "ci_upper": -0.0007916759350337088
+  },
+  {
+    "position_k1000_classification": 633.0,
+    "term": "L1_treat",
+    "coef": -0.009730217978358269,
+    "ci_lower": -0.012032611295580864,
+    "ci_upper": -0.0074278246611356735
+  },
+  {
+    "position_k1000_classification": 633.0,
+    "term": "L2_treat",
+    "coef": -0.014520316384732723,
+    "ci_lower": -0.01727244257926941,
+    "ci_upper": -0.011768189258873463
+  },
+  {
+    "position_k1000_classification": 633.0,
+    "term": "L3_treat",
+    "coef": -0.017543897032737732,
+    "ci_lower": -0.02039335109293461,
+    "ci_upper": -0.014694442972540855
+  },
+  {
+    "position_k1000_classification": 633.0,
+    "term": "L4_treat",
+    "coef": -0.01976039446890354,
+    "ci_lower": -0.022705821320414543,
+    "ci_upper": -0.01681496761739254
+  },
+  {
+    "position_k1000_classification": 633.0,
+    "term": "L5_treat",
+    "coef": -0.01986602135002613,
+    "ci_lower": -0.022964652627706528,
+    "ci_upper": -0.016767390072345734
+  },
+  {
+    "position_k1000_classification": 633.0,
+    "term": "_cons",
+    "coef": 0.024031465873122215,
+    "ci_lower": 0.023098409175872803,
+    "ci_upper": 0.024964522570371628
+  },
+  {
+    "position_k1000_classification": 636.0,
+    "term": "0b.treat",
+    "coef": 0.0,
+    "ci_lower": 0.0,
+    "ci_upper": 0.0
+  },
+  {
+    "position_k1000_classification": 636.0,
+    "term": "1.treat",
+    "coef": 0.012707025744020939,
+    "ci_lower": 0.010102054104208946,
+    "ci_upper": 0.015311997383832932
+  },
+  {
+    "position_k1000_classification": 636.0,
+    "term": "F2_treat",
+    "coef": -0.003618036862462759,
+    "ci_lower": -0.005213223397731781,
+    "ci_upper": -0.002022850327193737
+  },
+  {
+    "position_k1000_classification": 636.0,
+    "term": "o.F1_treat",
+    "coef": 0.0,
+    "ci_lower": 0.0,
+    "ci_upper": 0.0
+  },
+  {
+    "position_k1000_classification": 636.0,
+    "term": "L0_treat",
+    "coef": -0.00019182392861694098,
+    "ci_lower": -0.0013273842632770538,
+    "ci_upper": 0.000943736347835511
+  },
+  {
+    "position_k1000_classification": 636.0,
+    "term": "L1_treat",
+    "coef": -0.0031098925974220037,
+    "ci_lower": -0.004780728369951248,
+    "ci_upper": -0.001439057057723403
+  },
+  {
+    "position_k1000_classification": 636.0,
+    "term": "L2_treat",
+    "coef": -0.005878410302102566,
+    "ci_lower": -0.007660612463951111,
+    "ci_upper": -0.004096208140254021
+  },
+  {
+    "position_k1000_classification": 636.0,
+    "term": "L3_treat",
+    "coef": -0.006143537815660238,
+    "ci_lower": -0.008060736581683159,
+    "ci_upper": -0.00422633858397603
+  },
+  {
+    "position_k1000_classification": 636.0,
+    "term": "L4_treat",
+    "coef": -0.0070382049307227135,
+    "ci_lower": -0.009129807353019714,
+    "ci_upper": -0.004946602508425713
+  },
+  {
+    "position_k1000_classification": 636.0,
+    "term": "L5_treat",
+    "coef": -0.007565043866634369,
+    "ci_lower": -0.009800304658710957,
+    "ci_upper": -0.005329783074557781
+  },
+  {
+    "position_k1000_classification": 636.0,
+    "term": "_cons",
+    "coef": 0.03311830759048462,
+    "ci_lower": 0.03223272040486336,
+    "ci_upper": 0.03400389477610588
+  },
+  {
+    "position_k1000_classification": 637.0,
+    "term": "0b.treat",
+    "coef": 0.0,
+    "ci_lower": 0.0,
+    "ci_upper": 0.0
+  },
+  {
+    "position_k1000_classification": 637.0,
+    "term": "1.treat",
+    "coef": 0.025367390364408493,
+    "ci_lower": 0.017369069159030914,
+    "ci_upper": 0.03336571156978607
+  },
+  {
+    "position_k1000_classification": 637.0,
+    "term": "F2_treat",
+    "coef": -0.0008144120802171528,
+    "ci_lower": -0.006188067141920328,
+    "ci_upper": 0.004559243097901344
+  },
+  {
+    "position_k1000_classification": 637.0,
+    "term": "o.F1_treat",
+    "coef": 0.0,
+    "ci_lower": 0.0,
+    "ci_upper": 0.0
+  },
+  {
+    "position_k1000_classification": 637.0,
+    "term": "L0_treat",
+    "coef": 0.001924648997373879,
+    "ci_lower": -0.0034211839083582163,
+    "ci_upper": 0.007270481903105974
+  },
+  {
+    "position_k1000_classification": 637.0,
+    "term": "L1_treat",
+    "coef": -0.0021962907630950212,
+    "ci_lower": -0.0069677820429205894,
+    "ci_upper": 0.0025752007495611906
+  },
+  {
+    "position_k1000_classification": 637.0,
+    "term": "L2_treat",
+    "coef": -0.0066075194627046585,
+    "ci_lower": -0.011984250508248806,
+    "ci_upper": -0.0012307879514992237
+  },
+  {
+    "position_k1000_classification": 637.0,
+    "term": "L3_treat",
+    "coef": -0.010272424668073654,
+    "ci_lower": -0.01533332746475935,
+    "ci_upper": -0.0052115218713879585
+  },
+  {
+    "position_k1000_classification": 637.0,
+    "term": "L4_treat",
+    "coef": -0.012936308048665524,
+    "ci_lower": -0.018589206039905548,
+    "ci_upper": -0.007283410057425499
+  },
+  {
+    "position_k1000_classification": 637.0,
+    "term": "L5_treat",
+    "coef": -0.014315835200250149,
+    "ci_lower": -0.020175252109766006,
+    "ci_upper": -0.008456417359411716
+  },
+  {
+    "position_k1000_classification": 637.0,
+    "term": "_cons",
+    "coef": 0.016414213925600052,
+    "ci_lower": 0.01514288131147623,
+    "ci_upper": 0.0176855456084013
+  },
+  {
+    "position_k1000_classification": 640.0,
+    "term": "0b.treat",
+    "coef": 0.0,
+    "ci_lower": 0.0,
+    "ci_upper": 0.0
+  },
+  {
+    "position_k1000_classification": 640.0,
+    "term": "1.treat",
+    "coef": 0.05457358434796333,
+    "ci_lower": 0.04878730699419975,
+    "ci_upper": 0.06035986170172691
+  },
+  {
+    "position_k1000_classification": 640.0,
+    "term": "F2_treat",
+    "coef": -0.003927765414118767,
+    "ci_lower": -0.007325001526623964,
+    "ci_upper": -0.000530529476236552
+  },
+  {
+    "position_k1000_classification": 640.0,
+    "term": "o.F1_treat",
+    "coef": 0.0,
+    "ci_lower": 0.0,
+    "ci_upper": 0.0
+  },
+  {
+    "position_k1000_classification": 640.0,
+    "term": "L0_treat",
+    "coef": -0.0012495315168052912,
+    "ci_lower": -0.003966199699789286,
+    "ci_upper": 0.0014671366661787033
+  },
+  {
+    "position_k1000_classification": 640.0,
+    "term": "L1_treat",
+    "coef": -0.009403685107827187,
+    "ci_lower": -0.01254126988351345,
+    "ci_upper": -0.006266099866479635
+  },
+  {
+    "position_k1000_classification": 640.0,
+    "term": "L2_treat",
+    "coef": -0.016153141856193542,
+    "ci_lower": -0.019803697243332863,
+    "ci_upper": -0.012502585537731647
+  },
+  {
+    "position_k1000_classification": 640.0,
+    "term": "L3_treat",
+    "coef": -0.020026618614792824,
+    "ci_lower": -0.024005763232707977,
+    "ci_upper": -0.01604747399687767
+  },
+  {
+    "position_k1000_classification": 640.0,
+    "term": "L4_treat",
+    "coef": -0.023777008056640625,
+    "ci_lower": -0.02796805463731289,
+    "ci_upper": -0.01958596147596836
+  },
+  {
+    "position_k1000_classification": 640.0,
+    "term": "L5_treat",
+    "coef": -0.027063928544521332,
+    "ci_lower": -0.031483154743909836,
+    "ci_upper": -0.02264470048248768
+  },
+  {
+    "position_k1000_classification": 640.0,
+    "term": "_cons",
+    "coef": 0.02714451216161251,
+    "ci_lower": 0.025964777916669846,
+    "ci_upper": 0.028324246406555176
+  }
+]
