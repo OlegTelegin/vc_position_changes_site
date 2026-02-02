@@ -1,5 +1,6 @@
 const DATA_URL = "data/vc_did_weightshare_results.json";
 const LABELS_URL = "data/1000_positions_num.csv";
+const MAPPING_URL = "data/mapping_between_50_and_1000_classifications.csv";
 
 const termOrder = [
   "F2_treat",
@@ -52,8 +53,9 @@ const zeroLine = plot.append("line").attr("class", "zero-line");
 const seriesGroup = plot.append("g").attr("class", "series");
 
 let dataByClass = new Map();
-let selectedClasses = new Set();
+let selectedBuckets = new Set();
 let classLabelMap = new Map();
+let classBucketMap = new Map();
 
 function renderEmpty(message) {
   chartContainer.selectAll(".empty-state").remove();
@@ -100,13 +102,27 @@ function normalizeLabels(raw) {
   );
 }
 
+function normalizeBucketMap(raw) {
+  if (!Array.isArray(raw)) {
+    return new Map();
+  }
+  return new Map(
+    raw
+      .filter((row) => row.role_k1000_v3 !== undefined && row.role_k50_v3 !== undefined)
+      .map((row) => [
+        String(row.role_k1000_v3).trim(),
+        String(row.role_k50_v3).trim(),
+      ])
+  );
+}
+
 function getClassLabel(value) {
   return classLabelMap.get(String(value)) ?? `Class ${value}`;
 }
 
-function buildFilters(classes) {
+function buildFilters(buckets) {
   filterList.selectAll("*").remove();
-  classes.forEach((value, index) => {
+  buckets.forEach((value, index) => {
     const item = filterList.append("label").attr("class", "filter-item");
     item
       .append("input")
@@ -115,13 +131,13 @@ function buildFilters(classes) {
       .property("checked", true)
       .on("change", (event) => {
         if (event.target.checked) {
-          selectedClasses.add(value);
+          selectedBuckets.add(value);
         } else {
-          selectedClasses.delete(value);
+          selectedBuckets.delete(value);
         }
         updateChart();
       });
-    item.append("span").text(getClassLabel(value));
+    item.append("span").text(value);
     if (index === 0) {
       item.append("span").attr("class", "sr-only");
     }
@@ -136,7 +152,9 @@ function getDimensions() {
 
 function updateChart() {
   clearEmpty();
-  const activeSeries = Array.from(selectedClasses);
+  const activeSeries = Array.from(dataByClass.keys()).filter((key) =>
+    selectedBuckets.has(classBucketMap.get(key))
+  );
   if (activeSeries.length === 0) {
     seriesGroup.selectAll("*").remove();
     axisX.selectAll("*").remove();
@@ -263,23 +281,37 @@ function updateChart() {
   });
 }
 
-function init(raw) {
+function init(raw, mappingRaw) {
   dataByClass = normalizeData(raw);
-  const classes = Array.from(dataByClass.keys()).sort((a, b) => Number(a) - Number(b));
-  selectedClasses = new Set(classes);
-  buildFilters(classes);
+  const bucketMap = normalizeBucketMap(mappingRaw);
+  classBucketMap = new Map(
+    Array.from(dataByClass.keys()).map((key) => {
+      const classLabel = getClassLabel(key);
+      const bucket = bucketMap.get(classLabel) ?? "Unmapped";
+      return [key, bucket];
+    })
+  );
+  const buckets = Array.from(new Set(classBucketMap.values())).sort((a, b) =>
+    a.localeCompare(b)
+  );
+  selectedBuckets = new Set(buckets);
+  buildFilters(buckets);
   updateChart();
   window.addEventListener("resize", () => updateChart());
 }
 
-Promise.all([d3.json(DATA_URL), d3.csv(LABELS_URL).catch(() => null)])
-  .then(([raw, labelsRaw]) => {
+Promise.all([
+  d3.json(DATA_URL),
+  d3.csv(LABELS_URL).catch(() => null),
+  d3.csv(MAPPING_URL).catch(() => null),
+])
+  .then(([raw, labelsRaw, mappingRaw]) => {
     if (!raw || raw.length === 0) {
       renderEmpty("No data available.");
       return;
     }
     classLabelMap = normalizeLabels(labelsRaw);
-    init(raw);
+    init(raw, mappingRaw);
   })
   .catch((error) => {
     console.error("Failed to load data", error);
