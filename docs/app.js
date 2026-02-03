@@ -398,20 +398,33 @@ function updateChart() {
     );
   }
   if (sortedMarkers.length > 0) {
-    const minY = sortedMarkers[0].y;
-    const maxY = sortedMarkers[sortedMarkers.length - 1].y;
-    if (minY < markerRadius) {
-      const delta = markerRadius - minY;
-      sortedMarkers.forEach((marker) => {
-        marker.y += delta;
+    const minBound = markerRadius;
+    const maxBound = innerHeight - markerRadius;
+    const totalSpan = (sortedMarkers.length - 1) * minSeparation;
+    if (totalSpan > maxBound - minBound) {
+      const step = (maxBound - minBound) / Math.max(1, sortedMarkers.length - 1);
+      sortedMarkers.forEach((marker, idx) => {
+        marker.y = minBound + step * idx;
       });
+    } else {
+      const minY = sortedMarkers[0].y;
+      const maxY = sortedMarkers[sortedMarkers.length - 1].y;
+      if (minY < minBound) {
+        const delta = minBound - minY;
+        sortedMarkers.forEach((marker) => {
+          marker.y += delta;
+        });
+      }
+      if (maxY > maxBound) {
+        const delta = maxY - maxBound;
+        sortedMarkers.forEach((marker) => {
+          marker.y -= delta;
+        });
+      }
     }
-    if (maxY > innerHeight - markerRadius) {
-      const delta = maxY - (innerHeight - markerRadius);
-      sortedMarkers.forEach((marker) => {
-        marker.y -= delta;
-      });
-    }
+    sortedMarkers.forEach((marker) => {
+      marker.y = Math.max(minBound, Math.min(maxBound, marker.y));
+    });
   }
 
   const markerSelection = markersGroup
