@@ -52,7 +52,7 @@ body {
 
 .content {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 260px;
+  grid-template-columns: minmax(0, 1fr) 320px;
   gap: 24px;
 }
 
