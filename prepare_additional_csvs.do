@@ -13,10 +13,12 @@ export delimited using "C:\Users\Krosha\cursor_projects\vc_position_changes_site
 
 
 
+use "D:\revelio_data\list_of_17k_positions.dta", replace
+keep role_k1000_v3 role_k17000_v3
 
-
-
-
+merge 1:1 role_k17000_v3 using "D:\revelio_data\list_of_17k_positions_w_scores.dta"
+drop _merge
+sort role_k1000_v3
 
 
 

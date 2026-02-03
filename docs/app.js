@@ -205,12 +205,11 @@ function updateChart() {
   );
   const minY = yExtent[0] ?? -0.05;
   const maxY = yExtent[1] ?? 0.05;
-  const span = Math.max(0.0001, maxY - minY);
-  const padding = span * 0.015;
+  const maxWithPad = maxY * 1.02;
 
   const y = d3
     .scaleLinear()
-    .domain([minY - padding * 0.4, maxY + padding])
+    .domain([minY, maxWithPad])
     .range([innerHeight, 0]);
 
   const x = d3
