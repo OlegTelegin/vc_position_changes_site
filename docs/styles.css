@@ -172,6 +172,14 @@ body {
   stroke-width: 2.4px;
 }
 
+.hit-line {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 12px;
+  cursor: pointer;
+  pointer-events: stroke;
+}
+
 .ci-band {
   opacity: 0;
 }

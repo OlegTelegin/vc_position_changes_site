@@ -284,6 +284,7 @@ function updateChart() {
 
   seriesEnter.append("path").attr("class", "ci-band");
   seriesEnter.append("path").attr("class", "line");
+  seriesEnter.append("path").attr("class", "hit-line");
 
   seriesSelection.exit().remove();
 
@@ -315,10 +316,11 @@ function updateChart() {
       .attr("stroke", "none")
       .classed("visible", false);
 
+    group.select(".line").attr("d", line(seriesData)).attr("stroke", color);
+
     group
-      .select(".line")
+      .select(".hit-line")
       .attr("d", line(seriesData))
-      .attr("stroke", color)
       .on("mouseover", () => {
         merged.selectAll(".ci-band").classed("visible", false);
         group.select(".ci-band").classed("visible", true);
