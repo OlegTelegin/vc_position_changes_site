@@ -203,11 +203,14 @@ function updateChart() {
   const yExtent = d3.extent(
     allPoints.flatMap((d) => [d.ci_lower, d.ci_upper])
   );
+  const minY = yExtent[0] ?? -0.05;
+  const maxY = yExtent[1] ?? 0.05;
+  const span = Math.max(0.0001, maxY - minY);
+  const padding = span * 0.04;
 
   const y = d3
     .scaleLinear()
-    .domain([yExtent[0] ?? -0.05, yExtent[1] ?? 0.05])
-    .nice()
+    .domain([minY - padding * 0.6, maxY + padding])
     .range([innerHeight, 0]);
 
   const x = d3
