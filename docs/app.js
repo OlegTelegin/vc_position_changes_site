@@ -340,7 +340,7 @@ function updateChart() {
         window.clearTimeout(tooltip.node().hideTimeout);
         tooltip.node().hideTimeout = window.setTimeout(() => {
           tooltip.classed("visible", false);
-        }, 1600);
+        }, 3200);
       });
   });
 }
