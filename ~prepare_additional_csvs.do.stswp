@@ -39,19 +39,19 @@ export delimited using "C:\Users\Krosha\cursor_projects\vc_position_changes_site
 
 
 * forvalues i = 1/1004 {
-forvalues i = 1/1 {
+forvalues i = 1/100 {
 use weight total_employment using "F:\revelio_data\individual_positions_parts_analysis\needed_parts_collapsed_1000_roles_by_roles_w_info_restricted\part_`i'.dta", replace
 
 gen empl_share = weight / total_employment
 replace empl_share = 0 if empl_share == .
 gen position_k1000_classification = `i'
-collapse (mean) empl_share
+collapse (mean) empl_share, by(position_k1000_classification)
 
-use weight total_employment using "F:\revelio_data\individual_positions_parts_analysis\needed_parts_collapsed_1000_roles_by_roles_w_info_restricted\part_`i'.dta", replace
+save "F:\revelio_data\individual_positions_parts_analysis\needed_parts_collapsed_1000_roles_position_av_shares\part_`i'.dta", replace
 }
 
 
-needed_parts_collapsed_1000_roles_position_av_shares
+
 
 
 
