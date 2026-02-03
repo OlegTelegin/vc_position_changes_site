@@ -1,6 +1,7 @@
 const DATA_URL = "data/vc_did_weightshare_results.json";
 const LABELS_URL = "data/1000_positions_num.csv";
 const MAPPING_URL = "data/mapping_between_50_and_1000_classifications.csv";
+const SCORES_URL = "data/cc_ser_scores_for_1000_positions.csv";
 
 const termOrder = [
   "F2_treat",
@@ -82,6 +83,7 @@ let dataByClass = new Map();
 let selectedBuckets = new Set();
 let classLabelMap = new Map();
 let classBucketMap = new Map();
+let scoresByRole = new Map();
 
 function renderEmpty(message) {
   chartContainer.selectAll(".empty-state").remove();
@@ -140,6 +142,32 @@ function normalizeBucketMap(raw) {
         String(row.role_k50_v3).trim(),
       ])
   );
+}
+
+function normalizeScores(raw) {
+  if (!Array.isArray(raw)) {
+    return new Map();
+  }
+  const map = new Map();
+  raw.forEach((row) => {
+    const role = row.role_k1000_v3?.trim();
+    if (!role) {
+      return;
+    }
+    const cc = Number(row.position_cc_indicator_emb);
+    const ser = Number(row.position_ser_indicator_emb);
+    if (!map.has(role)) {
+      map.set(role, { cc: [], ser: [] });
+    }
+    const entry = map.get(role);
+    if (Number.isFinite(cc)) {
+      entry.cc.push(cc);
+    }
+    if (Number.isFinite(ser)) {
+      entry.ser.push(ser);
+    }
+  });
+  return map;
 }
 
 function getClassLabel(value) {
@@ -309,6 +337,80 @@ function updateChart() {
   });
 
   const seriesByKey = new Map();
+  const scoreBucketsByRole = scoresByRole;
+  const histogramWidth = 200;
+  const histogramHeight = 70;
+  const histogramMargin = { top: 8, right: 8, bottom: 18, left: 20 };
+  const histogramBins = d3.bin().domain([0, 10]).thresholds(10);
+
+  const renderHistogram = (container, values) => {
+    const svgNode = container
+      .append("svg")
+      .attr("width", histogramWidth)
+      .attr("height", histogramHeight);
+    const innerWidth =
+      histogramWidth - histogramMargin.left - histogramMargin.right;
+    const innerHeight =
+      histogramHeight - histogramMargin.top - histogramMargin.bottom;
+    const plot = svgNode
+      .append("g")
+      .attr(
+        "transform",
+        `translate(${histogramMargin.left},${histogramMargin.top})`
+      );
+
+    const bins = histogramBins(values);
+    const yMax = d3.max(bins, (bin) => bin.length) ?? 1;
+    const xScale = d3.scaleLinear().domain([0, 10]).range([0, innerWidth]);
+    const yScale = d3.scaleLinear().domain([0, yMax]).range([innerHeight, 0]);
+
+    plot
+      .selectAll("rect")
+      .data(bins)
+      .enter()
+      .append("rect")
+      .attr("x", (d) => xScale(d.x0))
+      .attr("y", (d) => yScale(d.length))
+      .attr("width", (d) => Math.max(0, xScale(d.x1) - xScale(d.x0) - 1))
+      .attr("height", (d) => innerHeight - yScale(d.length))
+      .attr("class", "tooltip-bar");
+
+    plot
+      .append("g")
+      .attr("class", "tooltip-axis")
+      .attr("transform", `translate(0,${innerHeight})`)
+      .call(d3.axisBottom(xScale).ticks(3));
+  };
+
+  const renderTooltipContent = (key) => {
+    const label = getClassLabel(key);
+    tooltip.selectAll("*").remove();
+    tooltip.append("div").attr("class", "tooltip-title").text(label);
+
+    const scores = scoreBucketsByRole.get(label);
+    if (!scores || (scores.cc.length === 0 && scores.ser.length === 0)) {
+      tooltip
+        .append("div")
+        .attr("class", "tooltip-empty")
+        .text("No score data available.");
+      return;
+    }
+
+    const charts = tooltip.append("div").attr("class", "tooltip-charts");
+    const ccWrapper = charts.append("div").attr("class", "tooltip-chart");
+    ccWrapper
+      .append("div")
+      .attr("class", "tooltip-chart-title")
+      .text("CC scores of positions (LLM)");
+    renderHistogram(ccWrapper, scores.cc);
+
+    const serWrapper = charts.append("div").attr("class", "tooltip-chart");
+    serWrapper
+      .append("div")
+      .attr("class", "tooltip-chart-title")
+      .text("SER scores of positions (LLM)");
+    renderHistogram(serWrapper, scores.ser);
+  };
   const showCiForKey = (key) => {
     merged.selectAll(".ci-band").classed("visible", false);
     const target = seriesByKey.get(key);
@@ -324,10 +426,10 @@ function updateChart() {
   };
   const showTooltip = (key, event) => {
     const rect = chartContainer.node().getBoundingClientRect();
-    const left = event.clientX - rect.left;
-    const top = event.clientY - rect.top;
+    const left = event.clientX - rect.left - 40;
+    const top = event.clientY - rect.top - 40;
+    renderTooltipContent(key);
     tooltip
-      .text(getClassLabel(key))
       .style("left", `${left}px`)
       .style("top", `${top}px`)
       .classed("visible", true);
@@ -489,13 +591,15 @@ Promise.all([
   d3.json(DATA_URL),
   d3.csv(LABELS_URL).catch(() => null),
   d3.csv(MAPPING_URL).catch(() => null),
+  d3.csv(SCORES_URL).catch(() => null),
 ])
-  .then(([raw, labelsRaw, mappingRaw]) => {
+  .then(([raw, labelsRaw, mappingRaw, scoresRaw]) => {
     if (!raw || raw.length === 0) {
       renderEmpty("No data available.");
       return;
     }
     classLabelMap = normalizeLabels(labelsRaw);
+    scoresByRole = normalizeScores(scoresRaw);
     init(raw, mappingRaw);
   })
   .catch((error) => {
