@@ -4,6 +4,7 @@ const MAPPING_URL = "data/mapping_between_50_and_1000_classifications.csv";
 const SCORES_URL = "data/cc_ser_scores_for_1000_positions.csv";
 const CORR_URL = "data/corr_w_wfd_sm.csv";
 const PCTILE_URL = "data/max_coef_pctile_for_1000_positions.csv";
+const POPULARITY_URL = "data/position_popularity_pctile_for_1000_positions.csv";
 
 const termOrder = [
   "F2_treat",
@@ -153,7 +154,7 @@ function normalizeBucketMap(raw) {
   );
 }
 
-function normalizePctileMap(raw) {
+function normalizePctileMap(raw, valueKey) {
   if (!Array.isArray(raw)) {
     return new Map();
   }
@@ -162,11 +163,11 @@ function normalizePctileMap(raw) {
       .filter(
         (row) =>
           row.position_k1000_classification !== undefined &&
-          row.max_coef_pctile !== undefined
+          row[valueKey] !== undefined
       )
       .map((row) => [
         String(row.position_k1000_classification).trim(),
-        Number(row.max_coef_pctile),
+        Number(row[valueKey]),
       ])
       .filter(([, value]) => Number.isFinite(value))
   );
@@ -664,7 +665,7 @@ function updateChart() {
     .on("click", (event, d) => showTooltip(d.key, event));
 }
 
-function init(raw, mappingRaw, pctileRaw) {
+function init(raw, mappingRaw, pctileRaw, popularityRaw) {
   dataByClass = normalizeData(raw);
   const bucketMap = normalizeBucketMap(mappingRaw);
   const bucketMap50 = new Map(
@@ -680,7 +681,7 @@ function init(raw, mappingRaw, pctileRaw) {
   bucketMapByMode.set("buckets50", bucketMap50);
   bucketsByMode.set("buckets50", buckets50);
 
-  const pctileMap = normalizePctileMap(pctileRaw);
+  const pctileMap = normalizePctileMap(pctileRaw, "max_coef_pctile");
   const bucketLabelByNum = new Map();
   Array.from(pctileMap.values()).forEach((bucketNum) => {
     if (!bucketLabelByNum.has(bucketNum)) {
@@ -705,6 +706,37 @@ function init(raw, mappingRaw, pctileRaw) {
   );
   bucketMapByMode.set("pctile", bucketMapPctile);
   bucketsByMode.set("pctile", bucketsPctile);
+
+  const popularityMap = normalizePctileMap(
+    popularityRaw,
+    "position_popularity_pctile"
+  );
+  const popularityLabelByNum = new Map();
+  Array.from(popularityMap.values()).forEach((bucketNum) => {
+    if (!popularityLabelByNum.has(bucketNum)) {
+      popularityLabelByNum.set(bucketNum, pctileLabel(bucketNum));
+    }
+  });
+  const bucketMapPopularity = new Map(
+    Array.from(dataByClass.keys()).map((key) => {
+      const bucketNum = popularityMap.get(String(key));
+      const label = bucketNum
+        ? popularityLabelByNum.get(bucketNum)
+        : "Unmapped";
+      return [key, label ?? "Unmapped"];
+    })
+  );
+  const bucketsPopularity = Array.from(
+    new Set(bucketMapPopularity.values())
+  ).sort((a, b) => {
+    if (a === "Unmapped") return 1;
+    if (b === "Unmapped") return -1;
+    const numA = Number(a.split("-")[0]);
+    const numB = Number(b.split("-")[0]);
+    return numB - numA;
+  });
+  bucketMapByMode.set("popularity", bucketMapPopularity);
+  bucketsByMode.set("popularity", bucketsPopularity);
 
   groupingSelect.property("value", groupingMode);
   applyGrouping(groupingMode);
@@ -731,8 +763,18 @@ Promise.all([
   d3.csv(SCORES_URL).catch(() => null),
   d3.csv(CORR_URL).catch(() => null),
   d3.csv(PCTILE_URL).catch(() => null),
+  d3.csv(POPULARITY_URL).catch(() => null),
 ])
-  .then(([raw, labelsRaw, mappingRaw, scoresRaw, corrRaw, pctileRaw]) => {
+  .then(
+    ([
+      raw,
+      labelsRaw,
+      mappingRaw,
+      scoresRaw,
+      corrRaw,
+      pctileRaw,
+      popularityRaw,
+    ]) => {
     if (!raw || raw.length === 0) {
       renderEmpty("No data available.");
       return;
@@ -740,7 +782,7 @@ Promise.all([
     classLabelMap = normalizeLabels(labelsRaw);
     scoresByRole = normalizeScores(scoresRaw);
     correlationByRoleNum = normalizeCorrelations(corrRaw);
-    init(raw, mappingRaw, pctileRaw);
+    init(raw, mappingRaw, pctileRaw, popularityRaw);
   })
   .catch((error) => {
     console.error("Failed to load data", error);

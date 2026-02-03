@@ -39,7 +39,7 @@ export delimited using "C:\Users\Krosha\cursor_projects\vc_position_changes_site
 
 
 * forvalues i = 1/1004 {
-forvalues i = 1/100 {
+forvalues i = 1/1004 {
 use weight total_employment using "F:\revelio_data\individual_positions_parts_analysis\needed_parts_collapsed_1000_roles_by_roles_w_info_restricted\part_`i'.dta", replace
 
 gen empl_share = weight / total_employment
@@ -52,7 +52,14 @@ save "F:\revelio_data\individual_positions_parts_analysis\needed_parts_collapsed
 
 
 
+use "F:\revelio_data\individual_positions_parts_analysis\needed_parts_collapsed_1000_roles_position_av_shares\part_1.dta", replace
+forvalues i = 2/1004 {
+append using "F:\revelio_data\individual_positions_parts_analysis\needed_parts_collapsed_1000_roles_position_av_shares\part_`i'.dta"
+}
 
+xtile position_popularity_pctile = empl_share, nq(20)
+
+export delimited using "C:\Users\Krosha\cursor_projects\vc_position_changes_site\docs\data\position_popularity_pctile_for_1000_positions.csv"
 
 
 
