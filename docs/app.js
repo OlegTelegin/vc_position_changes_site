@@ -201,10 +201,19 @@ function updateChart() {
 
   const allPoints = activeSeries.flatMap((key) => dataByClass.get(key) || []);
   const coefExtent = d3.extent(allPoints, (d) => d.coef);
-  const minY = coefExtent[0] ?? -0.05;
-  const maxY = coefExtent[1] ?? 0.05;
-  const topPad = Math.max(0.0005, Math.abs(maxY) * 0.02);
-  const bottomPad = Math.max(0.0005, Math.abs(minY) * 0.02);
+  const minLine = coefExtent[0] ?? -0.05;
+  const maxLine = coefExtent[1] ?? 0.05;
+  const upperCap = maxLine * 1.1;
+  const lowerCap = minLine * 1.1;
+  const topPad = Math.max(0.0005, Math.abs(maxLine) * 0.02);
+  const bottomPad = Math.max(0.0005, Math.abs(minLine) * 0.02);
+
+  const clampCi = (value) => Math.min(Math.max(value, lowerCap), upperCap);
+  const ciExtent = d3.extent(
+    allPoints.flatMap((d) => [clampCi(d.ci_lower), clampCi(d.ci_upper)])
+  );
+  const minY = Math.min(minLine, ciExtent[0] ?? minLine);
+  const maxY = Math.max(maxLine, ciExtent[1] ?? maxLine);
 
   const y = d3
     .scaleLinear()
@@ -225,8 +234,8 @@ function updateChart() {
   const area = d3
     .area()
     .x((d) => x(d.term))
-    .y0((d) => y(d.ci_lower))
-    .y1((d) => y(d.ci_upper));
+    .y0((d) => y(clampCi(d.ci_lower)))
+    .y1((d) => y(clampCi(d.ci_upper)));
 
   axisX.attr("transform", `translate(0,${innerHeight})`).call(
     d3
