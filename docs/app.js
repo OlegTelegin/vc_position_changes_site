@@ -200,16 +200,15 @@ function updateChart() {
   const innerHeight = height - margin.top - margin.bottom;
 
   const allPoints = activeSeries.flatMap((key) => dataByClass.get(key) || []);
-  const yExtent = d3.extent(
-    allPoints.flatMap((d) => [d.ci_lower, d.ci_upper])
-  );
-  const minY = yExtent[0] ?? -0.05;
-  const maxY = yExtent[1] ?? 0.05;
-  const maxWithPad = maxY * 1.02;
+  const coefExtent = d3.extent(allPoints, (d) => d.coef);
+  const minY = coefExtent[0] ?? -0.05;
+  const maxY = coefExtent[1] ?? 0.05;
+  const topPad = Math.max(0.0005, Math.abs(maxY) * 0.02);
+  const bottomPad = Math.max(0.0005, Math.abs(minY) * 0.02);
 
   const y = d3
     .scaleLinear()
-    .domain([minY, maxWithPad])
+    .domain([minY - bottomPad, maxY + topPad])
     .range([innerHeight, 0]);
 
   const x = d3
