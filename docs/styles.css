@@ -182,6 +182,7 @@ body {
 
 .ci-band {
   opacity: 0;
+  pointer-events: none;
 }
 
 .ci-band.visible {
