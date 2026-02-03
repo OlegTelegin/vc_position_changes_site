@@ -95,9 +95,10 @@ body {
   margin-bottom: 16px;
 }
 
-.filter-control label {
-  font-size: 12px;
-  color: #a8b2d1;
+.filter-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e6f1ff;
 }
 
 .filter-control select {
