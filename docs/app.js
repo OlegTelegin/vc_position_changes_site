@@ -65,7 +65,7 @@ const chartContainer = d3.select("#chart");
 const tooltip = d3.select("#tooltip");
 const filterList = d3.select("#filter-list");
 
-const margin = { top: 24, right: 18, bottom: 56, left: 74 };
+const margin = { top: 24, right: 46, bottom: 56, left: 74 };
 
 const svg = chartContainer.append("svg");
 const plot = svg.append("g").attr("class", "plot");
@@ -76,6 +76,7 @@ const axisYLabel = plot.append("text").attr("class", "axis-label axis-label-y");
 const eventLine = plot.append("line").attr("class", "event-line");
 const zeroLine = plot.append("line").attr("class", "zero-line");
 const seriesGroup = plot.append("g").attr("class", "series");
+const markersGroup = plot.append("g").attr("class", "markers");
 
 let dataByClass = new Map();
 let selectedBuckets = new Set();
@@ -182,6 +183,7 @@ function updateChart() {
   );
   if (activeSeries.length === 0) {
     seriesGroup.selectAll("*").remove();
+    markersGroup.selectAll("*").remove();
     axisX.selectAll("*").remove();
     axisY.selectAll("*").remove();
     axisXLabel.text("");
@@ -292,22 +294,54 @@ function updateChart() {
 
   const seriesIndexByKey = new Map();
   const seriesCountByBucket = new Map();
+  const colorByKey = new Map();
   const groupedKeys = d3.group(activeSeries, (key) => classBucketMap.get(key));
   groupedKeys.forEach((keys, bucket) => {
     const sorted = keys.slice().sort((a, b) => Number(a) - Number(b));
     seriesCountByBucket.set(bucket, sorted.length);
     sorted.forEach((key, index) => {
       seriesIndexByKey.set(key, index);
+      colorByKey.set(
+        key,
+        getSeriesColor(bucket ?? "Unmapped", index, sorted.length)
+      );
     });
   });
+
+  const seriesByKey = new Map();
+  const showCiForKey = (key) => {
+    merged.selectAll(".ci-band").classed("visible", false);
+    const target = seriesByKey.get(key);
+    if (target) {
+      target.select(".ci-band").classed("visible", true);
+    }
+  };
+  const hideCiForKey = (key) => {
+    const target = seriesByKey.get(key);
+    if (target) {
+      target.select(".ci-band").classed("visible", false);
+    }
+  };
+  const showTooltip = (key, event) => {
+    const rect = chartContainer.node().getBoundingClientRect();
+    const left = event.clientX - rect.left;
+    const top = event.clientY - rect.top;
+    tooltip
+      .text(getClassLabel(key))
+      .style("left", `${left}px`)
+      .style("top", `${top}px`)
+      .classed("visible", true);
+    window.clearTimeout(tooltip.node().hideTimeout);
+    tooltip.node().hideTimeout = window.setTimeout(() => {
+      tooltip.classed("visible", false);
+    }, 3200);
+  };
 
   merged.each(function (key, index) {
     const group = d3.select(this);
     const seriesData = dataByClass.get(key) || [];
-    const bucket = classBucketMap.get(key) ?? "Unmapped";
-    const seriesIndex = seriesIndexByKey.get(key) ?? index;
-    const seriesCount = seriesCountByBucket.get(bucket) ?? activeSeries.length;
-    const color = getSeriesColor(bucket, seriesIndex, seriesCount);
+    const color = colorByKey.get(key) ?? colorPalette[index % colorPalette.length];
+    seriesByKey.set(key, group);
 
     group
       .select(".ci-band")
@@ -321,28 +355,102 @@ function updateChart() {
     group
       .select(".hit-line")
       .attr("d", line(seriesData))
-      .on("mouseover", () => {
-        merged.selectAll(".ci-band").classed("visible", false);
-        group.select(".ci-band").classed("visible", true);
-      })
-      .on("mouseout", () => {
-        group.select(".ci-band").classed("visible", false);
-      })
-      .on("click", (event) => {
-        const rect = chartContainer.node().getBoundingClientRect();
-        const left = event.clientX - rect.left;
-        const top = event.clientY - rect.top;
-        tooltip
-          .text(getClassLabel(key))
-          .style("left", `${left}px`)
-          .style("top", `${top}px`)
-          .classed("visible", true);
-        window.clearTimeout(tooltip.node().hideTimeout);
-        tooltip.node().hideTimeout = window.setTimeout(() => {
-          tooltip.classed("visible", false);
-        }, 3200);
-      });
+      .on("mouseover", () => showCiForKey(key))
+      .on("mouseout", () => hideCiForKey(key))
+      .on("click", (event) => showTooltip(key, event));
   });
+
+  const markersData = activeSeries
+    .map((key) => {
+      const seriesData = dataByClass.get(key) || [];
+      const lastPoint = seriesData[seriesData.length - 1];
+      if (!lastPoint) {
+        return null;
+      }
+      return {
+        key,
+        color: colorByKey.get(key) ?? colorPalette[0],
+        anchorX: x(lastPoint.term) ?? 0,
+        targetY: y(lastPoint.coef),
+      };
+    })
+    .filter(Boolean);
+
+  const minSeparation = 12;
+  const markerRadius = 4;
+  const sortedMarkers = markersData
+    .slice()
+    .sort((a, b) => a.targetY - b.targetY);
+  sortedMarkers.forEach((marker, idx) => {
+    if (idx === 0) {
+      marker.y = marker.targetY;
+    } else {
+      marker.y = Math.max(
+        marker.targetY,
+        sortedMarkers[idx - 1].y + minSeparation
+      );
+    }
+  });
+  for (let i = sortedMarkers.length - 2; i >= 0; i -= 1) {
+    sortedMarkers[i].y = Math.min(
+      sortedMarkers[i].y,
+      sortedMarkers[i + 1].y - minSeparation
+    );
+  }
+  if (sortedMarkers.length > 0) {
+    const minY = sortedMarkers[0].y;
+    const maxY = sortedMarkers[sortedMarkers.length - 1].y;
+    if (minY < markerRadius) {
+      const delta = markerRadius - minY;
+      sortedMarkers.forEach((marker) => {
+        marker.y += delta;
+      });
+    }
+    if (maxY > innerHeight - markerRadius) {
+      const delta = maxY - (innerHeight - markerRadius);
+      sortedMarkers.forEach((marker) => {
+        marker.y -= delta;
+      });
+    }
+  }
+
+  const markerSelection = markersGroup
+    .selectAll(".marker")
+    .data(sortedMarkers, (d) => d.key);
+
+  const markerEnter = markerSelection.enter().append("g").attr("class", "marker");
+  markerEnter.append("line").attr("class", "marker-connector");
+  markerEnter.append("circle").attr("class", "marker-dot");
+  markerEnter.append("circle").attr("class", "marker-hit");
+
+  markerSelection.exit().remove();
+
+  const markerMerged = markerEnter.merge(markerSelection);
+  const markerX = innerWidth + 10;
+
+  markerMerged
+    .select(".marker-connector")
+    .attr("x1", (d) => d.anchorX)
+    .attr("x2", markerX)
+    .attr("y1", (d) => d.targetY)
+    .attr("y2", (d) => d.y)
+    .attr("stroke", (d) => d.color);
+
+  markerMerged
+    .select(".marker-dot")
+    .attr("cx", markerX)
+    .attr("cy", (d) => d.y)
+    .attr("r", markerRadius)
+    .attr("fill", (d) => d.color);
+
+  markerMerged
+    .select(".marker-hit")
+    .attr("cx", markerX)
+    .attr("cy", (d) => d.y)
+    .attr("r", markerRadius + 6)
+    .on("mouseover", (event, d) => showCiForKey(d.key))
+    .on("mouseout", (event, d) => hideCiForKey(d.key))
+    .on("click", (event, d) => showTooltip(d.key, event));
 }
 
 function init(raw, mappingRaw) {

@@ -189,6 +189,22 @@ body {
   opacity: 0.14;
 }
 
+.marker-connector {
+  stroke-width: 1px;
+  opacity: 0.55;
+}
+
+.marker-dot {
+  stroke: rgba(10, 25, 47, 0.6);
+  stroke-width: 1px;
+}
+
+.marker-hit {
+  fill: transparent;
+  pointer-events: all;
+  cursor: pointer;
+}
+
 .empty-state {
   text-align: center;
   color: #8892b0;
