@@ -146,6 +146,12 @@ body {
   margin-bottom: 8px;
 }
 
+.tooltip-corr {
+  font-size: 12px;
+  color: #a8b2d1;
+  margin-bottom: 8px;
+}
+
 .tooltip-charts {
   display: grid;
   gap: 10px;

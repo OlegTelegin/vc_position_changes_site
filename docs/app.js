@@ -2,6 +2,7 @@ const DATA_URL = "data/vc_did_weightshare_results.json";
 const LABELS_URL = "data/1000_positions_num.csv";
 const MAPPING_URL = "data/mapping_between_50_and_1000_classifications.csv";
 const SCORES_URL = "data/cc_ser_scores_for_1000_positions.csv";
+const CORR_URL = "data/corr_w_wfd_sm.csv";
 
 const termOrder = [
   "F2_treat",
@@ -84,6 +85,7 @@ let selectedBuckets = new Set();
 let classLabelMap = new Map();
 let classBucketMap = new Map();
 let scoresByRole = new Map();
+let correlationByRoleNum = new Map();
 let tooltipDismissBound = false;
 
 function renderEmpty(message) {
@@ -169,6 +171,25 @@ function normalizeScores(raw) {
     }
   });
   return map;
+}
+
+function normalizeCorrelations(raw) {
+  if (!Array.isArray(raw)) {
+    return new Map();
+  }
+  return new Map(
+    raw
+      .filter(
+        (row) =>
+          row.role_k1000_v3_num !== undefined &&
+          row.corr_w_wfd_sm !== undefined
+      )
+      .map((row) => [
+        String(row.role_k1000_v3_num).trim(),
+        Number(row.corr_w_wfd_sm),
+      ])
+      .filter(([, value]) => Number.isFinite(value))
+  );
 }
 
 function getClassLabel(value) {
@@ -339,6 +360,8 @@ function updateChart() {
 
   const seriesByKey = new Map();
   const scoreBucketsByRole = scoresByRole;
+  const correlationScale = d3.scaleLinear().domain([-1, 1]).range([0, 1]);
+  const correlationColor = d3.scaleLinear().domain([0, 1]).range(["#7aa2f7", "#ff9e64"]);
   const histogramWidth = 200;
   const histogramHeight = 70;
   const histogramMargin = { top: 8, right: 8, bottom: 18, left: 20 };
@@ -385,8 +408,22 @@ function updateChart() {
 
   const renderTooltipContent = (key) => {
     const label = getClassLabel(key);
+    const roleNum = String(key);
     tooltip.selectAll("*").remove();
     tooltip.append("div").attr("class", "tooltip-title").text(label);
+
+    const corrValue = correlationByRoleNum.get(roleNum);
+    if (Number.isFinite(corrValue)) {
+      const normalized = correlationScale(Math.max(-1, Math.min(1, corrValue)));
+      tooltip
+        .append("div")
+        .attr("class", "tooltip-corr")
+        .html(
+          `Correlation with actual S&M investment in WFD: <span style="color: ${correlationColor(
+            normalized
+          )};">${corrValue.toFixed(3)}</span>`
+        );
+    }
 
     const scores = scoreBucketsByRole.get(label);
     if (!scores || (scores.cc.length === 0 && scores.ser.length === 0)) {
@@ -616,14 +653,16 @@ Promise.all([
   d3.csv(LABELS_URL).catch(() => null),
   d3.csv(MAPPING_URL).catch(() => null),
   d3.csv(SCORES_URL).catch(() => null),
+  d3.csv(CORR_URL).catch(() => null),
 ])
-  .then(([raw, labelsRaw, mappingRaw, scoresRaw]) => {
+  .then(([raw, labelsRaw, mappingRaw, scoresRaw, corrRaw]) => {
     if (!raw || raw.length === 0) {
       renderEmpty("No data available.");
       return;
     }
     classLabelMap = normalizeLabels(labelsRaw);
     scoresByRole = normalizeScores(scoresRaw);
+    correlationByRoleNum = normalizeCorrelations(corrRaw);
     init(raw, mappingRaw);
   })
   .catch((error) => {
