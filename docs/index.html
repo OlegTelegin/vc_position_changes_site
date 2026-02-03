@@ -33,6 +33,13 @@
         <aside class="filters">
           <h2>Position Classifications</h2>
           <p>Select which classifications to render.</p>
+          <div class="filter-control">
+            <label for="grouping-mode">How do you want to pick positions</label>
+            <select id="grouping-mode">
+              <option value="buckets50">On 50 position groups classification</option>
+              <option value="pctile">On the level of increase after VC deal</option>
+            </select>
+          </div>
           <div id="filter-list" class="filter-list"></div>
         </aside>
       </main>

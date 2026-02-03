@@ -3,6 +3,7 @@ const LABELS_URL = "data/1000_positions_num.csv";
 const MAPPING_URL = "data/mapping_between_50_and_1000_classifications.csv";
 const SCORES_URL = "data/cc_ser_scores_for_1000_positions.csv";
 const CORR_URL = "data/corr_w_wfd_sm.csv";
+const PCTILE_URL = "data/max_coef_pctile_for_1000_positions.csv";
 
 const termOrder = [
   "F2_treat",
@@ -66,6 +67,7 @@ function getSeriesColor(bucket, index, count) {
 const chartContainer = d3.select("#chart");
 const tooltip = d3.select("#tooltip");
 const filterList = d3.select("#filter-list");
+const groupingSelect = d3.select("#grouping-mode");
 
 const margin = { top: 24, right: 46, bottom: 56, left: 74 };
 
@@ -82,6 +84,10 @@ const markersGroup = plot.append("g").attr("class", "markers");
 
 let dataByClass = new Map();
 let selectedBuckets = new Set();
+let selectedBucketsByMode = new Map();
+let bucketMapByMode = new Map();
+let bucketsByMode = new Map();
+let groupingMode = "buckets50";
 let classLabelMap = new Map();
 let classBucketMap = new Map();
 let scoresByRole = new Map();
@@ -145,6 +151,31 @@ function normalizeBucketMap(raw) {
         String(row.role_k50_v3).trim(),
       ])
   );
+}
+
+function normalizePctileMap(raw) {
+  if (!Array.isArray(raw)) {
+    return new Map();
+  }
+  return new Map(
+    raw
+      .filter(
+        (row) =>
+          row.position_k1000_classification !== undefined &&
+          row.max_coef_pctile !== undefined
+      )
+      .map((row) => [
+        String(row.position_k1000_classification).trim(),
+        Number(row.max_coef_pctile),
+      ])
+      .filter(([, value]) => Number.isFinite(value))
+  );
+}
+
+function pctileLabel(bucket) {
+  const high = bucket * 5;
+  const low = high - 4;
+  return `${low}-${high}th percentile`;
 }
 
 function normalizeScores(raw) {
@@ -218,6 +249,20 @@ function buildFilters(buckets) {
       item.append("span").attr("class", "sr-only");
     }
   });
+}
+
+function applyGrouping(mode) {
+  groupingMode = mode;
+  const buckets = bucketsByMode.get(mode) || [];
+  classBucketMap = bucketMapByMode.get(mode) || new Map();
+  let selected = selectedBucketsByMode.get(mode);
+  if (!selected) {
+    selected = new Set(buckets.length > 0 ? [buckets[0]] : []);
+    selectedBucketsByMode.set(mode, selected);
+  }
+  selectedBuckets = selected;
+  buildFilters(buckets);
+  updateChart();
 }
 
 function getDimensions() {
@@ -487,7 +532,7 @@ function updateChart() {
     window.clearTimeout(tooltip.node().hideTimeout);
     tooltip.node().hideTimeout = window.setTimeout(() => {
       tooltip.classed("visible", false);
-    }, 3200);
+    }, 7000);
   };
 
   merged.each(function (key, index) {
@@ -619,22 +664,53 @@ function updateChart() {
     .on("click", (event, d) => showTooltip(d.key, event));
 }
 
-function init(raw, mappingRaw) {
+function init(raw, mappingRaw, pctileRaw) {
   dataByClass = normalizeData(raw);
   const bucketMap = normalizeBucketMap(mappingRaw);
-  classBucketMap = new Map(
+  const bucketMap50 = new Map(
     Array.from(dataByClass.keys()).map((key) => {
       const classLabel = getClassLabel(key);
       const bucket = bucketMap.get(classLabel) ?? "Unmapped";
       return [key, bucket];
     })
   );
-  const buckets = Array.from(new Set(classBucketMap.values())).sort((a, b) =>
+  const buckets50 = Array.from(new Set(bucketMap50.values())).sort((a, b) =>
     a.localeCompare(b)
   );
-  selectedBuckets = new Set(buckets.length > 0 ? [buckets[0]] : []);
-  buildFilters(buckets);
-  updateChart();
+  bucketMapByMode.set("buckets50", bucketMap50);
+  bucketsByMode.set("buckets50", buckets50);
+
+  const pctileMap = normalizePctileMap(pctileRaw);
+  const bucketLabelByNum = new Map();
+  Array.from(pctileMap.values()).forEach((bucketNum) => {
+    if (!bucketLabelByNum.has(bucketNum)) {
+      bucketLabelByNum.set(bucketNum, pctileLabel(bucketNum));
+    }
+  });
+  const bucketMapPctile = new Map(
+    Array.from(dataByClass.keys()).map((key) => {
+      const bucketNum = pctileMap.get(String(key));
+      const label = bucketNum ? bucketLabelByNum.get(bucketNum) : "Unmapped";
+      return [key, label ?? "Unmapped"];
+    })
+  );
+  const bucketsPctile = Array.from(new Set(bucketMapPctile.values())).sort(
+    (a, b) => {
+      if (a === "Unmapped") return 1;
+      if (b === "Unmapped") return -1;
+      const numA = Number(a.split("-")[0]);
+      const numB = Number(b.split("-")[0]);
+      return numB - numA;
+    }
+  );
+  bucketMapByMode.set("pctile", bucketMapPctile);
+  bucketsByMode.set("pctile", bucketsPctile);
+
+  groupingSelect.property("value", groupingMode);
+  applyGrouping(groupingMode);
+  groupingSelect.on("change", (event) => {
+    applyGrouping(event.target.value);
+  });
   window.addEventListener("resize", () => updateChart());
   if (!tooltipDismissBound) {
     tooltipDismissBound = true;
@@ -654,8 +730,9 @@ Promise.all([
   d3.csv(MAPPING_URL).catch(() => null),
   d3.csv(SCORES_URL).catch(() => null),
   d3.csv(CORR_URL).catch(() => null),
+  d3.csv(PCTILE_URL).catch(() => null),
 ])
-  .then(([raw, labelsRaw, mappingRaw, scoresRaw, corrRaw]) => {
+  .then(([raw, labelsRaw, mappingRaw, scoresRaw, corrRaw, pctileRaw]) => {
     if (!raw || raw.length === 0) {
       renderEmpty("No data available.");
       return;
@@ -663,7 +740,7 @@ Promise.all([
     classLabelMap = normalizeLabels(labelsRaw);
     scoresByRole = normalizeScores(scoresRaw);
     correlationByRoleNum = normalizeCorrelations(corrRaw);
-    init(raw, mappingRaw);
+    init(raw, mappingRaw, pctileRaw);
   })
   .catch((error) => {
     console.error("Failed to load data", error);
