@@ -123,7 +123,7 @@ body {
 
 .tooltip {
   position: absolute;
-  pointer-events: none;
+  pointer-events: auto;
   padding: 8px 12px;
   border-radius: 8px;
   background: rgba(10, 25, 47, 0.95);
@@ -131,7 +131,7 @@ body {
   font-size: 13px;
   border: 1px solid rgba(100, 255, 218, 0.3);
   opacity: 0;
-  transform: translate(-10%, -90%);
+  transform: translate(0, 0);
   transition: opacity 120ms ease;
   width: 260px;
 }

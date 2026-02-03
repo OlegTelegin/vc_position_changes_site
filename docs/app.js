@@ -84,6 +84,7 @@ let selectedBuckets = new Set();
 let classLabelMap = new Map();
 let classBucketMap = new Map();
 let scoresByRole = new Map();
+let tooltipDismissBound = false;
 
 function renderEmpty(message) {
   chartContainer.selectAll(".empty-state").remove();
@@ -425,14 +426,27 @@ function updateChart() {
     }
   };
   const showTooltip = (key, event) => {
+    event.stopPropagation();
     const rect = chartContainer.node().getBoundingClientRect();
-    const left = event.clientX - rect.left - 40;
-    const top = event.clientY - rect.top - 40;
     renderTooltipContent(key);
-    tooltip
-      .style("left", `${left}px`)
-      .style("top", `${top}px`)
-      .classed("visible", true);
+    tooltip.classed("visible", true).style("left", "0px").style("top", "0px");
+    const tooltipNode = tooltip.node();
+    const tooltipWidth = tooltipNode.offsetWidth || 0;
+    const tooltipHeight = tooltipNode.offsetHeight || 0;
+    const padding = 8;
+    const desiredLeft =
+      event.clientX - rect.left - tooltipWidth - 24;
+    const desiredTop =
+      event.clientY - rect.top - tooltipHeight - 24;
+    const left = Math.min(
+      rect.width - tooltipWidth - padding,
+      Math.max(padding, desiredLeft)
+    );
+    const top = Math.min(
+      rect.height - tooltipHeight - padding,
+      Math.max(padding, desiredTop)
+    );
+    tooltip.style("left", `${left}px`).style("top", `${top}px`);
     window.clearTimeout(tooltip.node().hideTimeout);
     tooltip.node().hideTimeout = window.setTimeout(() => {
       tooltip.classed("visible", false);
@@ -585,6 +599,16 @@ function init(raw, mappingRaw) {
   buildFilters(buckets);
   updateChart();
   window.addEventListener("resize", () => updateChart());
+  if (!tooltipDismissBound) {
+    tooltipDismissBound = true;
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (tooltip.node()?.contains(target)) {
+        return;
+      }
+      tooltip.classed("visible", false);
+    });
+  }
 }
 
 Promise.all([
