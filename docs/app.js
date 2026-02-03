@@ -37,6 +37,30 @@ const colorPalette = [
   "#c3e88d",
 ];
 
+function hashString(value) {
+  let hash = 2166136261;
+  for (let i = 0; i < value.length; i += 1) {
+    hash ^= value.charCodeAt(i);
+    hash += (hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24);
+  }
+  return Math.abs(hash);
+}
+
+function getBucketHue(bucket) {
+  const paletteIndex = hashString(bucket) % colorPalette.length;
+  return d3.hsl(colorPalette[paletteIndex]).h;
+}
+
+function getSeriesColor(bucket, index, count) {
+  const hue = getBucketHue(bucket);
+  const lightnessScale = d3
+    .scaleLinear()
+    .domain([0, Math.max(1, count - 1)])
+    .range([0.35, 0.65]);
+  const lightness = lightnessScale(index);
+  return d3.hsl(hue, 0.55, lightness).formatHex();
+}
+
 const chartContainer = d3.select("#chart");
 const tooltip = d3.select("#tooltip");
 const filterList = d3.select("#filter-list");
@@ -255,10 +279,24 @@ function updateChart() {
 
   const merged = seriesEnter.merge(seriesSelection);
 
+  const seriesIndexByKey = new Map();
+  const seriesCountByBucket = new Map();
+  const groupedKeys = d3.group(activeSeries, (key) => classBucketMap.get(key));
+  groupedKeys.forEach((keys, bucket) => {
+    const sorted = keys.slice().sort((a, b) => Number(a) - Number(b));
+    seriesCountByBucket.set(bucket, sorted.length);
+    sorted.forEach((key, index) => {
+      seriesIndexByKey.set(key, index);
+    });
+  });
+
   merged.each(function (key, index) {
     const group = d3.select(this);
     const seriesData = dataByClass.get(key) || [];
-    const color = colorPalette[index % colorPalette.length];
+    const bucket = classBucketMap.get(key) ?? "Unmapped";
+    const seriesIndex = seriesIndexByKey.get(key) ?? index;
+    const seriesCount = seriesCountByBucket.get(bucket) ?? activeSeries.length;
+    const color = getSeriesColor(bucket, seriesIndex, seriesCount);
 
     group
       .select(".ci-band")
