@@ -49,6 +49,7 @@ const axisX = plot.append("g").attr("class", "axis axis-x");
 const axisY = plot.append("g").attr("class", "axis axis-y");
 const axisXLabel = plot.append("text").attr("class", "axis-label axis-label-x");
 const axisYLabel = plot.append("text").attr("class", "axis-label axis-label-y");
+const eventLine = plot.append("line").attr("class", "event-line");
 const zeroLine = plot.append("line").attr("class", "zero-line");
 const seriesGroup = plot.append("g").attr("class", "series");
 
@@ -128,7 +129,7 @@ function buildFilters(buckets) {
       .append("input")
       .attr("type", "checkbox")
       .attr("value", value)
-      .property("checked", true)
+      .property("checked", selectedBuckets.has(value))
       .on("change", (event) => {
         if (event.target.checked) {
           selectedBuckets.add(value);
@@ -161,6 +162,7 @@ function updateChart() {
     axisY.selectAll("*").remove();
     axisXLabel.text("");
     axisYLabel.text("");
+    eventLine.attr("opacity", 0);
     zeroLine.attr("stroke", "none");
     renderEmpty("Select a classification to render the chart.");
     return;
@@ -208,6 +210,18 @@ function updateChart() {
       .tickSizeOuter(0)
   );
   axisY.call(d3.axisLeft(y).ticks(5));
+
+  const eventX = x("o.F1_treat");
+  if (eventX !== undefined) {
+    eventLine
+      .attr("x1", eventX)
+      .attr("x2", eventX)
+      .attr("y1", 0)
+      .attr("y2", innerHeight)
+      .attr("opacity", 1);
+  } else {
+    eventLine.attr("opacity", 0);
+  }
 
   axisXLabel
     .attr("x", innerWidth / 2)
@@ -294,7 +308,7 @@ function init(raw, mappingRaw) {
   const buckets = Array.from(new Set(classBucketMap.values())).sort((a, b) =>
     a.localeCompare(b)
   );
-  selectedBuckets = new Set(buckets);
+  selectedBuckets = new Set(buckets.length > 0 ? [buckets[0]] : []);
   buildFilters(buckets);
   updateChart();
   window.addEventListener("resize", () => updateChart());

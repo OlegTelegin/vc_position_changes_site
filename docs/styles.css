@@ -161,6 +161,12 @@ body {
   stroke-dasharray: 4 4;
 }
 
+.event-line {
+  stroke: rgba(100, 255, 218, 0.35);
+  stroke-dasharray: 2 6;
+  stroke-width: 1px;
+}
+
 .line {
   fill: none;
   stroke-width: 2.4px;
